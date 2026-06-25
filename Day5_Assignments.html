@@ -63,132 +63,54 @@
     </section>
 
     
-    <section>
-        <h2>Healthy Recipes</h2>
-        <p>This section contains healthy and delicious recipes you can make at home.</p>
-    </section>
-
-</body>
-</html>
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
- <div>
-
-    <style>
-    
-    .navbar {
-        display: flex;
-        list-style-type: none;
-        padding: 10px 20px;
-        margin: 0 0 20px 0;
-        gap: 30px;
-        background-color: #111827; 
-        border-radius: 8px;
-        width: fit-content;
-    }
-
-    
-    .navbar a {
-        color: #2dd4bf; 
-        text-decoration: none;
-        font-family: Arial, sans-serif;
-        font-weight: 600;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        transition: color 0.2s ease;
-    }
-
-  
-    .navbar a:hover {
-        color: #ffffff;
-    }
-</style>
- 
-  
-    <div id="home">
-     <ul class="navbar">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About Me</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#certification">Certification</a></li>
-</ul>
-        <!-- Profile Picture, Name, and Contact details grouped -->
-        <img src="photo.jpeg" alt="photo" width="100px">
-        <h1>DIVAKAR R</h1>
-        <p>MERN STACK DEVELOPER</p>
-        <h3><b>Chennai, Tamilnadu, India | +91 9787403552 | akashdivakar1234@gmail.com</b></h3>
-    </div>
- 
-    <div id="about">
-        <h2><i>About Me</i></h2>
-        <hr>
-        <p>MERN Stack Developer with 1 year of experience specializing in building clean, responsive, and user-friendly web applications...</p>
-    </div>
-
-  
-    <div>
-        <h2><i>TECHNICAL SKILLS</i></h2>
-        <hr>
-        <ul>
-            <li><b>Backend:</b> Node.js, Express.js, MongoDB, Mongoose, MySQL</li>
-            <li><b>Frontend:</b> React.js, Tailwind CSS, Bootstrap, HTML, CSS</li>
-            <li><b>Tools:</b> Git, VS Code, MongoDB Atlas, Postman, REST APIs</li>
-            <li><b>Languages:</b> Java, JavaScript</li>
-        </ul>
-    </div>
-
    
-    <div id="experience">
-        <h2><i>EXPERIENCE</i></h2>
-        <hr>
-        <h4>Yoho Technology, Chennai | MERN Stack Developer</h4>
-        <ul>
-            <li>Developing responsive and user-friendly UI using modern frontend technologies</li>
-            <li>Creating reusable and modular components for scalable web applications</li>
-            <li>Implementing client-side form validations and interactive features</li>
-            <li>Integrating RESTful APIs to display dynamic data on the frontend</li>
-        </ul>
-    </div>
-
    
-    <div>
-        <h2><i>PROJECTS</i></h2>
-        <hr>
-        <h2>Learning Management System | Yoho Technology</h2>
+    <form action="/welcome.html" method="get">
+
+        <label for="Fname" >Fname</label><br>
+        <input id="Fname" name="fname" type="text"  required><br>
+        <label for="Lname">Lname</label><br>
+        <input id="Lname" name="lname" type="text" required><br>
+        <label for="email">Email</label><br>
+        <input id="email" name="email" type="email" required><br>
+        <label for="password">Password</label><br>
+        <input id="password" name="password" type="password" required><br>
+        <label for="phoneno">phoneno</label><br>
+        <input id="phoneno" name="phone" type="tel" required><br>
+        <label for="course">course</label><br>
+        <input id="course" name="course" type="text" required><br>
+         <label for="Age">Age:</label><br>
+        <input text="number" id="Age" name="age" required><br>
+        <br>
+       <label>Gender:</label><br>
+  <input type="radio" id="genderMale" name="gender" value="Male" required>
+  <label for="genderMale">Male</label><br>
+  <input type="radio" id="genderFemale" name="gender" value="Female">
+  <label for="genderFemale">Female</label><br>
+  <input type="radio" id="genderOther" name="gender" value="Other">
+  <label for="genderOther">Other</label><br><br>
+
+        <br>
+        
+<label>Hobbies:</label><br>
+<input  id="hobbies" name="sports" type="checkbox"  >
+        <label for="hobbies">football</label><br>
+        <input  id="hobbies" name="games" type="checkbox" >
+        <label for="hobies"> ps5</label><br>
+<br>
        
-    </div>
+        
 
-    <div>
-        <h2><i>EDUCATION</i></h2>
-        <hr>
-        <b>Panimalar Engineering College, Chennai.</b><br>
-        <span>B.E (Computer and Communication Engineering) | CGPA 7.89 of 10</span>
-    </div>
+        <button type="submit">Register</button>
 
-    
-    <div id="certification">
-        <h2><i>CERTIFICATIONS</i></h2>
-        <hr>
-        <ul>
-            <li>Placement preparation using Java by CodeChef</li>
-            <li>AICTE certification in Python</li>
-        </ul>
-    </div>
 
- </div>
+    </form>
+
+
 </body>
-
 </html>
+
+
+
+
+
