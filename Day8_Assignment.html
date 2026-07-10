@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Box Model Tasks</title>
+  <style>
+    .box {
+      width: 300px;
+      margin: 25px;
+      border: 5px solid black;
+      padding: 20px;
+      background-color: lightgray;
+    }
+
+    .box-task-1 {
+      width: 300px;
+      padding: 20px;
+      border: 10px solid green;
+    }
+
+    .box-task-2-to-5 {
+      width: 200px;
+      border: 2px solid red;
+      padding: 25px;
+      margin-left: 25px;
+      background-color: lightyellow;
+    }
+
+    .box-task-9 {
+      width: 600px;
+      padding: 20px;
+      border: 2px solid blue;
+      margin: 0 auto;
+    }
+
+    .button-container {
+      width: 600px;
+      display: flex;
+      gap: 10px;
+      background-color: #eee;
+      padding: 10px;
+    }
+    .button-container button {
+      flex: 1;
+      box-sizing: border-box;
+    }
+    .btn-1 { padding: 10px; }
+    .btn-2 { padding: 25px 10px; }
+    .btn-3 { padding: 5px 30px; }
+
+    .box-task-11 {
+      padding-top: 40px;
+      padding-right: 10px;
+      padding-bottom: 20px;
+      padding-left: 50px;
+      border: 1px solid black;
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Box Model Tasks</h1>
+
+  <div class="box">
+    This is the text content inside the box.
+  </div>
+
+  <div class="box-task-1">
+    Task 1
+  </div>
+
+  <div class="box-task-2-to-5">
+    Task 2 to 5
+  </div>
+
+  <div class="box-task-9">
+    Task 9
+  </div>
+
+  <div class="button-container">
+    <button class="btn-1">Btn A</button>
+    <button class="btn-2">Btn B</button>
+    <button class="btn-3">Btn C</button>
+  </div>
+
+  <div class="box-task-11">
+    Task 11
+  </div>
+
+</body>
+</html>

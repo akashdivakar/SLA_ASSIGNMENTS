@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 11 Grid Assignment</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+
+    .grid-task-1 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 100px);
+      gap: 15px;
+    }
+    .grid-task-1 div {
+      background-color: lightblue;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grid-task-2 {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+      min-height: 400px;
+      gap: 10px;
+    }
+    .header {
+      grid-area: header;
+      background-color: darkblue;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .sidebar {
+      grid-area: sidebar;
+      background-color: lightgray;
+      padding: 20px;
+    }
+    .main {
+      grid-area: main;
+      background-color: white;
+      border: 1px solid black;
+      padding: 20px;
+    }
+    .footer {
+      grid-area: footer;
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .grid-task-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      padding: 15px;
+      background-color: #fafafa;
+      text-align: center;
+    }
+
+    .grid-task-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      grid-auto-rows: 150px;
+    }
+    .gallery-item {
+      background-color: lightcoral;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .item-large {
+      grid-column: span 2;
+      grid-row: span 2;
+      background-color: lightgreen;
+    }
+    .item-wide {
+      grid-column: span 2;
+      background-color: lightyellow;
+    }
+    .item-tall {
+      grid-row: span 2;
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Task 1: Basic Grid Layout</h2>
+  <div class="grid-task-1">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+    <div>Item 4</div>
+    <div>Item 5</div>
+    <div>Item 6</div>
+  </div>
+
+  <hr>
+
+  <h2>Task 2: Website Page Layout</h2>
+  <div class="grid-task-2">
+    <div class="header">Header</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="main">Main Content</div>
+    <div class="footer">Footer</div>
+  </div>
+
+  <hr>
+
+  <h2>Task 3: Card Grid</h2>
+  <div class="grid-task-3">
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+    <div class="card">Card 4</div>
+    <div class="card">Card 5</div>
+  </div>
+
+  <hr>
+
+  <h2>Task 4: Image Gallery</h2>
+  <div class="grid-task-4">
+    <div class="gallery-item item-large">Large Image</div>
+    <div class="gallery-item">Image 2</div>
+    <div class="gallery-item item-tall">Tall Image</div>
+    <div class="gallery-item item-wide">Wide Image</div>
+    <div class="gallery-item">Image 5</div>
+    <div class="gallery-item">Image 6</div>
+  </div>
+
+</body>
+</html>

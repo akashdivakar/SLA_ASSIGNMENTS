@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 9 Assignment</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .task1-span {
+      display: block;
+      width: 200px;
+      padding: 10px;
+      background-color: lightblue;
+      margin-bottom: 5px;
+    }
+
+    .task2-div {
+      display: inline-block;
+      padding: 15px;
+      margin: 10px;
+    }
+    .task2-div1 { background-color: coral; }
+    .task2-div2 { background-color: lightgreen; }
+    .task2-div3 { background-color: gold; }
+    .task2-div4 { background-color: lightpink; }
+    .task2-div5 { background-color: lightskyblue; }
+
+    .product-card {
+      display: inline-block;
+      width: 180px;
+      border: 1px solid black;
+      padding: 15px;
+      margin: 10px;
+      vertical-align: top;
+    }
+    .product-card button {
+      width: 100%;
+      padding: 5px;
+    }
+
+    .horizontal-menu {
+      background-color: #333;
+      padding: 10px;
+    }
+    .horizontal-menu a {
+      display: inline-block;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+    .horizontal-menu a:hover {
+      background-color: #555;
+    }
+
+    .box-5 {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      margin: 10px;
+      border: 1px solid black;
+    }
+    .box-5-middle {
+      position: relative;
+      top: 30px;
+      left: 50px;
+      background-color: lightcoral;
+    }
+
+    .task6-container {
+      position: relative;
+      width: 400px;
+      height: 250px;
+      border: 2px solid black;
+      background-color: #f0f0f0;
+    }
+    .task6-square {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      background-color: red;
+    }
+
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background-color: darkblue;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .content-7 {
+      margin-top: 90px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fixed-header">Fixed Header</header>
+
+  <div class="content-7">
+    <h2>Task 1</h2>
+    <span class="task1-span">Span 1</span>
+    <span class="task1-span">Span 2</span>
+    <span class="task1-span">Span 3</span>
+    <span class="task1-span">Span 4</span>
+    <span class="task1-span">Span 5</span>
+
+    <hr>
+
+    <h2>Task 2</h2>
+    <div class="task2-div task2-div1">Div 1</div>
+    <div class="task2-div task2-div2">Div 2</div>
+    <div class="task2-div task2-div3">Div 3</div>
+    <div class="task2-div task2-div4">Div 4</div>
+    <div class="task2-div task2-div5">Div 5</div>
+
+    <hr>
+
+    <h2>Task 3</h2>
+    <div class="product-card">
+      <h4>Product A</h4>
+      <p>$10.00</p>
+      <button>Buy</button>
+    </div>
+    <div class="product-card">
+      <h4>Product B</h4>
+      <p>$20.00</p>
+      <button>Buy</button>
+    </div>
+    <div class="product-card">
+      <h4>Product C</h4>
+      <p>$30.00</p>
+      <button>Buy</button>
+    </div>
+    <div class="product-card">
+      <h4>Product D</h4>
+      <p>$40.00</p>
+      <button>Buy</button>
+    </div>
+
+    <hr>
+
+    <h2>Task 4</h2>
+    <nav class="horizontal-menu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Gallery</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <hr>
+
+    <h2>Task 5</h2>
+    <div>
+      <div class="box-5">Box 1</div>
+      <div class="box-5 box-5-middle">Box 2</div>
+      <div class="box-5">Box 3</div>
+    </div>
+
+    <hr>
+
+    <h2>Task 6</h2>
+    <div class="task6-container">
+      <div class="task6-square"></div>
+    </div>
+
+    <hr>
+
+    <h2>Task 7 Paragraphs</h2>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+    <p>Paragraph 4</p>
+    <p>Paragraph 5</p>
+    <p>Paragraph 6</p>
+    <p>Paragraph 7</p>
+    <p>Paragraph 8</p>
+    <p>Paragraph 9</p>
+    <p>Paragraph 10</p>
+    <p>Paragraph 11</p>
+    <p>Paragraph 12</p>
+    <p>Paragraph 13</p>
+    <p>Paragraph 14</p>
+    <p>Paragraph 15</p>
+    <p>Paragraph 16</p>
+    <p>Paragraph 17</p>
+    <p>Paragraph 18</p>
+    <p>Paragraph 19</p>
+    <p>Paragraph 20</p>
+  </div>
+
+</body>
+</html>
