@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Assignment</title>
+</head>
+<body>
+    <script>
+        let arr = [1, 5, 8, 12, 15];
+
+        arr.push(20);
+        console.log(arr);
+
+        arr.pop();
+        console.log(arr);
+
+        arr.shift();
+        console.log(arr);
+
+        arr.unshift(3);
+        console.log(arr);
+
+        for (let i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+        }
+
+        let doubled = arr.map(function(num) {
+            return num * 2;
+        });
+        console.log(doubled);
+
+        let evens = arr.filter(function(num) {
+            return num % 2 == 0;
+        });
+        console.log(evens);
+
+        let total = arr.reduce(function(sum, num) {
+            return sum + num;
+        }, 0);
+        console.log(total);
+
+        let found = arr.find(function(num) {
+            return num > 10;
+        });
+        console.log(found);
+
+        let check = arr.includes(8);
+        console.log(check);
+
+    </script>
+</body>
+</html>

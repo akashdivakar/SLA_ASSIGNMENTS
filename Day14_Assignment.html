@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 13 Assignment</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      background-color: white;
+    }
+
+    @media (max-width: 767px) {
+      body {
+        background-color: lightyellow;
+      }
+    }
+
+    .task-1 {
+      background-color: blue;
+      color: white;
+      padding: 15px;
+      width: 200px;
+      transition: background-color 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .task-1:hover {
+      background-color: green;
+    }
+
+    .task-2 {
+      background-color: purple;
+      color: white;
+      padding: 15px;
+      width: 200px;
+      transition: transform 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .task-2:hover {
+      transform: scale(1.15);
+    }
+
+    .task-3 {
+      background-color: darkgray;
+      color: black;
+      padding: 15px;
+      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 20px;
+    }
+    .task-3:hover {
+      background-color: orange;
+      transform: scale(1.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .task-4-container {
+      border: 1px solid black;
+      padding: 15px;
+      width: 200px;
+      margin-bottom: 20px;
+    }
+    .task-4-content {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .task-4-container:hover .task-4-content {
+      opacity: 1;
+    }
+
+    .font-h1 {
+      font-family: 'Arial', sans-serif;
+      font-size: 2.5rem;
+    }
+    .font-h2 {
+      font-family: 'Georgia', serif;
+      font-size: 2rem;
+    }
+    .font-p {
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+    }
+
+    .bold-text {
+      font-weight: bold;
+    }
+    .italic-text {
+      font-style: italic;
+    }
+    .underline-text {
+      text-decoration: underline;
+    }
+
+    .task-7 {
+      width: 80%;
+      max-width: 600px;
+      height: 100px;
+      background-color: lightgreen;
+      border: 2px solid green;
+      margin-bottom: 20px;
+    }
+
+    .task-8 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .task-9 {
+      font-size: 5vw;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Task 1</h2>
+  <div class="task-1">Hover Color Change</div>
+
+  <hr>
+
+  <h2>Task 2</h2>
+  <div class="task-2">Grow on Hover</div>
+
+  <hr>
+
+  <h2>Task 3</h2>
+  <div class="task-3">Color, Size, Shadow</div>
+
+  <hr>
+
+  <h2>Task 4</h2>
+  <div class="task-4-container">
+    <span>Hover here</span>
+    <div class="task-4-content">Revealed Content</div>
+  </div>
+
+  <hr>
+
+  <h2>Task 5</h2>
+  <h1 class="font-h1">Arial Heading 1</h1>
+  <h2 class="font-h2">Georgia Heading 2</h2>
+  <p class="font-p">Courier New Paragraph</p>
+
+  <hr>
+
+  <h2>Task 6</h2>
+  <p class="bold-text">Bold text</p>
+  <p class="italic-text">Italic text</p>
+  <p class="underline-text">Underlined text</p>
+
+  <hr>
+
+  <h2>Task 7</h2>
+  <div class="task-7">80% width, max 600px</div>
+
+  <hr>
+
+  <h2>Task 8</h2>
+  <p class="task-8">
+    This paragraph has a font size of 1.5rem. The rem unit is relative to the root html element's font size. On different devices, it scales automatically if the user changes their browser's default font size settings, maintaining readability and accessibility across screen sizes.
+  </p>
+
+  <hr>
+
+  <h2>Task 9</h2>
+  <h1 class="task-9">Heading Scales with Viewport Width</h1>
+
+  <hr>
+
+  <h2>Task 10</h2>
+  <p>The background color of this page changes to light yellow below 768px width.</p>
+
+</body>
+</html>

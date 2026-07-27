@@ -217,7 +217,69 @@
 
 <p>This is a <span style="font-weight:bold; color:blue">bold</span> word.</p>
 <p>This is a <span style="background-color:yellow;">highlighted</span> word.</p>
+    <script>
+        document.write("Hello JS");
 
+        var title = "Hello JS";
+        let name = "Akash";
+        const age = 22;
 
+        console.log(name);
+        console.log(age);
+
+        let strVal = "Hello World";
+        let numVal = 100;
+        let boolVal = true;
+        let nullVal = null;
+        let undefVal;
+
+        let a = 10;
+        let b = 5;
+        console.log(a + b);
+        console.log(a - b);
+        console.log(a * b);
+        console.log(a / b);
+        console.log(a % b);
+        console.log(a == "10");
+        console.log(a === 10);
+        console.log(a > 0 && b > 0);
+        console.log(a > 0 || b < 0);
+
+        let checkNum = -7;
+        if (checkNum > 0) {
+            console.log("Positive");
+        } else if (checkNum < 0) {
+            console.log("Negative");
+        } else {
+            console.log("Zero");
+        }
+
+        let day = 3;
+        switch (day) {
+            case 1:
+                console.log("Monday");
+                break;
+            case 2:
+                console.log("Tuesday");
+                break;
+            case 3:
+                console.log("Wednesday");
+                break;
+            case 4:
+                console.log("Thursday");
+                break;
+            case 5:
+                console.log("Friday");
+                break;
+            case 6:
+                console.log("Saturday");
+                break;
+            case 7:
+                console.log("Sunday");
+                break;
+            default:
+                console.log("Invalid day");
+        }
+    </script>
 </body>
 </html>

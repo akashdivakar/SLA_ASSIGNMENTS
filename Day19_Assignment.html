@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+function getFactorial(n) {
+  let fact = 1;
+  for (let i = 1; i <= n; i++) {
+    fact = fact * i;
+  }
+  return fact;
+}
+
+console.log(getFactorial(10));
+
+function checkPrime(n) {
+  if (n <= 1) {
+    return false;
+  }
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkArmstrong(n) {
+  let str = n.toString();
+  let power = str.length;
+  let sum = 0;
+  for (let i = 0; i < str.length; i++) {
+    let digit = parseInt(str[i]);
+    sum = sum + Math.pow(digit, power);
+  }
+  return sum === n;
+}
+
+
+
+console.log("=== TASK 1: Series of 1 to 20 ===");
+
+function task1_withoutParam() {
+  let output = "";
+  for (let i = 1; i <= 20; i++) {
+    output = output + i + " ";
+  }
+  console.log("Without Parameter: " + output.trim());
+}
+
+function task1_withParam(limit) {
+  let output = "";
+  for (let i = 1; i <= limit; i++) {
+    output = output + i + " ";
+  }
+  console.log("With Parameter:    " + output.trim());
+}
+
+function task1_withReturn(limit) {
+  let output = "";
+  for (let i = 1; i <= limit; i++) {
+    output = output + i + " ";
+  }
+  return output.trim();
+}
+
+// Execution Task 1:
+task1_withoutParam();
+task1_withParam(20);
+let result1 = task1_withReturn(20);
+console.log("With Return:       " + result1);
+
+
+
+console.log("\n=== TASK 2: Series of 1 to 20 Odd ===");
+
+function task2_withoutParam() {
+  let output = "";
+  for (let i = 1; i <= 20; i = i + 2) {
+    output = output + i + " ";
+  }
+  console.log("Without Parameter: " + output.trim());
+}
+
+function task2_withParam(limit) {
+  let output = "";
+  for (let i = 1; i <= limit; i = i + 2) {
+    output = output + i + " ";
+  }
+  console.log("With Parameter:    " + output.trim());
+}
+
+function task2_withReturn(limit) {
+  let output = "";
+  for (let i = 1; i <= limit; i = i + 2) {
+    output = output + i + " ";
+  }
+  return output.trim();
+}
+
+// Execution Task 2:
+task2_withoutParam();
+task2_withParam(20);
+let result2 = task2_withReturn(20);
+console.log("With Return:       " + result2);
+
+
+
+console.log("\n=== TASK 3: Series of Even 0 to 20 ===");
+
+function task3_withoutParam() {
+  let output = "";
+  for (let i = 0; i <= 20; i = i + 2) {
+    output = output + i + " ";
+  }
+  console.log("Without Parameter: " + output.trim());
+}
+
+function task3_withParam(limit) {
+  let output = "";
+  for (let i = 0; i <= limit; i = i + 2) {
+    output = output + i + " ";
+  }
+  console.log("With Parameter:    " + output.trim());
+}
+
+function task3_withReturn(limit) {
+  let output = "";
+  for (let i = 0; i <= limit; i = i + 2) {
+    output = output + i + " ";
+  }
+  return output.trim();
+}
+
+// Execution Task 3:
+task3_withoutParam();
+task3_withParam(20);
+let result3 = task3_withReturn(20);
+console.log("With Return:       " + result3);
+
+
+
+console.log("\n=== TASK 4: Series of 5s (0 to 25) ===");
+
+function task4_withoutParam() {
+  let output = "";
+  for (let i = 0; i <= 25; i = i + 5) {
+    output = output + i + " ";
+  }
+  console.log("Without Parameter: " + output.trim());
+}
+
+function task4_withParam(limit) {
+  let output = "";
+  for (let i = 0; i <= limit; i = i + 5) {
+    output = output + i + " ";
+  }
+  console.log("With Parameter:    " + output.trim());
+}
+
+function task4_withReturn(limit) {
+  let output = "";
+  for (let i = 0; i <= limit; i = i + 5) {
+    output = output + i + " ";
+  }
+  return output.trim();
+}
+
+// Execution Task 4:
+task4_withoutParam();
+task4_withParam(25);
+let result4 = task4_withReturn(25);
+console.log("With Return:       " + result4);
+
+
+console.log("\n=== TASK 5: Sum of Series (1 to 10) ===");
+
+function task5_withoutParam() {
+  let sum = 0;
+  for (let i = 1; i <= 10; i++) {
+    sum = sum + i;
+  }
+  console.log("Without Parameter: " + sum);
+}
+
+function task5_withParam(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum = sum + i;
+  }
+  console.log("With Parameter:    " + sum);
+}
+
+function task5_withReturn(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum = sum + i;
+  }
+  return sum;
+}
+
+// Execution Task 5:
+task5_withoutParam();
+task5_withParam(10);
+let result5 = task5_withReturn(10);
+console.log("With Return:       " + result5);
+
+
+
+console.log("\n=== TASK 6: Sum of Even Series (0 to 10) ===");
+
+function task6_withoutParam() {
+  let sum = 0;
+  for (let i = 0; i <= 10; i = i + 2) {
+    sum = sum + i;
+  }
+  console.log("Without Parameter: " + sum);
+}
+
+function task6_withParam(n) {
+  let sum = 0;
+  for (let i = 0; i <= n; i = i + 2) {
+    sum = sum + i;
+  }
+  console.log("With Parameter:    " + sum);
+}
+
+function task6_withReturn(n) {
+  let sum = 0;
+  for (let i = 0; i <= n; i = i + 2) {
+    sum = sum + i;
+  }
+  return sum;
+}
+
+// Execution Task 6:
+task6_withoutParam();
+task6_withParam(10);
+let result6 = task6_withReturn(10);
+console.log("With Return:       " + result6);
+
+
+
+console.log("\n=== TASK 7: Sum of Odd Series (1 to 10) ===");
+
+function task7_withoutParam() {
+  let sum = 0;
+  for (let i = 1; i <= 10; i = i + 2) {
+    sum = sum + i;
+  }
+  console.log("Without Parameter: " + sum);
+}
+
+function task7_withParam(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i = i + 2) {
+    sum = sum + i;
+  }
+  console.log("With Parameter:    " + sum);
+}
+
+function task7_withReturn(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i = i + 2) {
+    sum = sum + i;
+  }
+  return sum;
+}
+
+// Execution Task 7:
+task7_withoutParam();
+task7_withParam(10);
+let result7 = task7_withReturn(10);
+console.log("With Return:       " + result7);
+
+
+
+console.log("\n=== TASK 8: Sum of 5s Series (0 to 25) ===");
+
+function task8_withoutParam() {
+  let sum = 0;
+  for (let i = 0; i <= 25; i = i + 5) {
+    sum = sum + i;
+  }
+  console.log("Without Parameter: " + sum);
+}
+
+function task8_withParam(n) {
+  let sum = 0;
+  for (let i = 0; i <= n; i = i + 5) {
+    sum = sum + i;
+  }
+  console.log("With Parameter:    " + sum);
+}
+
+function task8_withReturn(n) {
+  let sum = 0;
+  for (let i = 0; i <= n; i = i + 5) {
+    sum = sum + i;
+  }
+  return sum;
+}
+
+// Execution Task 8:
+task8_withoutParam();
+task8_withParam(25);
+let result8 = task8_withReturn(25);
+console.log("With Return:       " + result8);
+
+
+
+console.log("\n=== TASK 9: Factorial Division Series Sum ===");
+
+function task9_withoutParam() {
+  let sum = 0;
+  for (let i = 1; i <= 5; i++) {
+    sum = sum + (i / getFactorial(i));
+  }
+  console.log("Without Parameter: " + sum);
+}
+
+function task9_withParam(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum = sum + (i / getFactorial(i));
+  }
+  console.log("With Parameter:    " + sum);
+}
+
+function task9_withReturn(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum = sum + (i / getFactorial(i));
+  }
+  return sum;
+}
+
+// Execution Task 9:
+task9_withoutParam();
+task9_withParam(5);
+let result9 = task9_withReturn(5);
+console.log("With Return:       " + result9);
+
+
+
+console.log("\n=== TASK 10: Even Factorial Division Series Sum ===");
+
+function task10_withoutParam() {
+  let sum = 0;
+  for (let i = 2; i <= 6; i = i + 2) {
+    sum = sum + (i / getFactorial(i));
+  }
+  console.log("Without Parameter: " + sum);
+}
+
+function task10_withParam(n) {
+  let sum = 0;
+  for (let i = 2; i <= n; i = i + 2) {
+    sum = sum + (i / getFactorial(i));
+  }
+  console.log("With Parameter:    " + sum);
+}
+
+function task10_withReturn(n) {
+  let sum = 0;
+  for (let i = 2; i <= n; i = i + 2) {
+    sum = sum + (i / getFactorial(i));
+  }
+  return sum;
+}
+
+// Execution Task 10:
+task10_withoutParam();
+task10_withParam(6);
+let result10 = task10_withReturn(6);
+console.log("With Return:       " + result10);
+
+
+
+console.log("\n=== TASK 11: Odd Factorial Division Series Sum ===");
+
+function task11_withoutParam() {
+  let sum = 0;
+  for (let i = 1; i <= 5; i = i + 2) {
+    sum = sum + (i / getFactorial(i));
+  }
+  console.log("Without Parameter: " + sum);
+}
+
+function task11_withParam(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i = i + 2) {
+    sum = sum + (i / getFactorial(i));
+  }
+  console.log("With Parameter:    " + sum);
+}
+
+function task11_withReturn(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i = i + 2) {
+    sum = sum + (i / getFactorial(i));
+  }
+  return sum;
+}
+
+// Execution Task 11:
+task11_withoutParam();
+task11_withParam(5);
+let result11 = task11_withReturn(5);
+console.log("With Return:       " + result11);
+
+
+
+console.log("\n=== TASK 12: Factorial of 5 ===");
+
+function task12_withoutParam() {
+  let fact = getFactorial(5);
+  console.log("Without Parameter: " + fact);
+}
+
+function task12_withParam(num) {
+  let fact = getFactorial(num);
+  console.log("With Parameter:    " + fact);
+}
+
+function task12_withReturn(num) {
+  let fact = getFactorial(num);
+  return fact;
+}
+
+// Execution Task 12:
+task12_withoutParam();
+task12_withParam(5);
+let result12 = task12_withReturn(5);
+console.log("With Return:       " + result12);
+
+
+
+console.log("\n=== TASK 13: Check Prime (7) ===");
+
+function task13_withoutParam() {
+  let isPrimeNum = checkPrime(7);
+  if (isPrimeNum) {
+    console.log("Without Parameter: 7 is Prime");
+  } else {
+    console.log("Without Parameter: 7 is Not Prime");
+  }
+}
+
+function task13_withParam(num) {
+  let isPrimeNum = checkPrime(num);
+  if (isPrimeNum) {
+    console.log("With Parameter:    " + num + " is Prime");
+  } else {
+    console.log("With Parameter:    " + num + " is Not Prime");
+  }
+}
+
+function task13_withReturn(num) {
+  let isPrimeNum = checkPrime(num);
+  if (isPrimeNum) {
+    return num + " is Prime";
+  } else {
+    return num + " is Not Prime";
+  }
+}
+
+// Execution Task 13:
+task13_withoutParam();
+task13_withParam(7);
+let result13 = task13_withReturn(7);
+console.log("With Return:       " + result13);
+
+
+
+console.log("\n=== TASK 14: Prime Series up to 20 ===");
+
+function task14_withoutParam() {
+  let output = "";
+  for (let i = 1; i <= 20; i++) {
+    if (checkPrime(i)) {
+      output = output + i + " ";
+    }
+  }
+  console.log("Without Parameter: " + output.trim());
+}
+
+function task14_withParam(limit) {
+  let output = "";
+  for (let i = 1; i <= limit; i++) {
+    if (checkPrime(i)) {
+      output = output + i + " ";
+    }
+  }
+  console.log("With Parameter:    " + output.trim());
+}
+
+function task14_withReturn(limit) {
+  let output = "";
+  for (let i = 1; i <= limit; i++) {
+    if (checkPrime(i)) {
+      output = output + i + " ";
+    }
+  }
+  return output.trim();
+}
+
+// Execution Task 14:
+task14_withoutParam();
+task14_withParam(20);
+let result14 = task14_withReturn(20);
+console.log("With Return:       " + result14);
+
+
+
+console.log("\n=== TASK 15: Check Armstrong (153) ===");
+
+function task15_withoutParam() {
+  let isArm = checkArmstrong(153);
+  if (isArm) {
+    console.log("Without Parameter: 153 is Armstrong");
+  } else {
+    console.log("Without Parameter: 153 is Not Armstrong");
+  }
+}
+
+function task15_withParam(num) {
+  let isArm = checkArmstrong(num);
+  if (isArm) {
+    console.log("With Parameter:    " + num + " is Armstrong");
+  } else {
+    console.log("With Parameter:    " + num + " is Not Armstrong");
+  }
+}
+
+function task15_withReturn(num) {
+  let isArm = checkArmstrong(num);
+  if (isArm) {
+    return num + " is Armstrong";
+  } else {
+    return num + " is Not Armstrong";
+  }
+}
+
+// Execution Task 15:
+task15_withoutParam();
+task15_withParam(153);
+let result15 = task15_withReturn(153);
+console.log("With Return:       " + result15);
+
+
+
+console.log("\n=== TASK 16: Armstrong Series up to 1000 ===");
+
+function task16_withoutParam() {
+  let output = "";
+  for (let i = 1; i <= 1000; i++) {
+    if (checkArmstrong(i)) {
+      output = output + i + " ";
+    }
+  }
+  console.log("Without Parameter: " + output.trim());
+}
+
+function task16_withParam(limit) {
+  let output = "";
+  for (let i = 1; i <= limit; i++) {
+    if (checkArmstrong(i)) {
+      output = output + i + " ";
+    }
+  }
+  console.log("With Parameter:    " + output.trim());
+}
+
+function task16_withReturn(limit) {
+  let output = "";
+  for (let i = 1; i <= limit; i++) {
+    if (checkArmstrong(i)) {
+      output = output + i + " ";
+    }
+  }
+  return output.trim();
+}
+
+// Execution Task 16:
+task16_withoutParam();
+task16_withParam(1000);
+let result16 = task16_withReturn(1000);
+console.log("With Return:       " + result16);
+
+
+
+console.log("\n=== TASK 17: Fibonacci Series (8 terms) ===");
+
+function task17_withoutParam() {
+  let a = 0;
+  let b = 1;
+  let output = "";
+  for (let i = 0; i < 8; i++) {
+    output = output + a + " ";
+    let next = a + b;
+    a = b;
+    b = next;
+  }
+  console.log("Without Parameter: " + output.trim());
+}
+
+function task17_withParam(count) {
+  let a = 0;
+  let b = 1;
+  let output = "";
+  for (let i = 0; i < count; i++) {
+    output = output + a + " ";
+    let next = a + b;
+    a = b;
+    b = next;
+  }
+  console.log("With Parameter:    " + output.trim());
+}
+
+function task17_withReturn(count) {
+  let a = 0;
+  let b = 1;
+  let output = "";
+  for (let i = 0; i < count; i++) {
+    output = output + a + " ";
+    let next = a + b;
+    a = b;
+    b = next;
+  }
+  return output.trim();
+}
+
+// Execution Task 17:
+task17_withoutParam();
+task17_withParam(8);
+let result17 = task17_withReturn(8);
+console.log("With Return:       " + result17);
+
+
+
+console.log("\n=== TASK 18: Table of 5 ===");
+
+function task18_withoutParam() {
+  console.log("Without Parameter:");
+  for (let i = 1; i <= 10; i++) {
+    console.log(i + " * 5 = " + (i * 5));
+  }
+}
+
+function task18_withParam(num) {
+  console.log("With Parameter:");
+  for (let i = 1; i <= 10; i++) {
+    console.log(i + " * " + num + " = " + (i * num));
+  }
+}
+
+function task18_withReturn(num) {
+  let output = "";
+  for (let i = 1; i <= 10; i++) {
+    output = output + i + " * " + num + " = " + (i * num) + "\n";
+  }
+  return output.trim();
+}
+
+// Execution Task 18:
+task18_withoutParam();
+task18_withParam(5);
+let result18 = task18_withReturn(5);
+console.log("With Return:\n" + result18);
+
+
+console.log("\n=== TASK 19: Sum of Digits (1234) ===");
+
+function task19_withoutParam() {
+  let temp = 1234;
+  let sum = 0;
+  while (temp > 0) {
+    let digit = temp % 10;
+    sum = sum + digit;
+    temp = Math.floor(temp / 10);
+  }
+  console.log("Without Parameter: " + sum);
+}
+
+function task19_withParam(num) {
+  let temp = Math.abs(num);
+  let sum = 0;
+  while (temp > 0) {
+    let digit = temp % 10;
+    sum = sum + digit;
+    temp = Math.floor(temp / 10);
+  }
+  console.log("With Parameter:    " + sum);
+}
+
+function task19_withReturn(num) {
+  let temp = Math.abs(num);
+  let sum = 0;
+  while (temp > 0) {
+    let digit = temp % 10;
+    sum = sum + digit;
+    temp = Math.floor(temp / 10);
+  }
+  return sum;
+}
+
+// Execution Task 19:
+task19_withoutParam();
+task19_withParam(1234);
+let result19 = task19_withReturn(1234);
+console.log("With Return:       " + result19);
+
+
+
+console.log("\n=== TASK 20: Check Palindrome (MALAYALAM) ===");
+
+function task20_withoutParam() {
+  let str = "MALAYALAM";
+  let reversed = str.split("").reverse().join("");
+  if (str === reversed) {
+    console.log("Without Parameter: MALAYALAM is Palindrome");
+  } else {
+    console.log("Without Parameter: MALAYALAM is Not Palindrome");
+  }
+}
+
+function task20_withParam(input) {
+  let str = input.toString().toUpperCase();
+  let reversed = str.split("").reverse().join("");
+  if (str === reversed) {
+    console.log("With Parameter:    " + input + " is Palindrome");
+  } else {
+    console.log("With Parameter:    " + input + " is Not Palindrome");
+  }
+}
+
+function task20_withReturn(input) {
+  let str = input.toString().toUpperCase();
+  let reversed = str.split("").reverse().join("");
+  if (str === reversed) {
+    return input + " is Palindrome";
+  } else {
+    return input + " is Not Palindrome";
+  }
+}
+
+// Execution Task 20:
+task20_withoutParam();
+task20_withParam("MALAYALAM");
+let result20 = task20_withReturn("MALAYALAM");
+console.log("With Return:       " + result20);
+
+</script>
+</body>
+</html>

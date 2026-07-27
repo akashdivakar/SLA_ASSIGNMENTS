@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 14 Assignment</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 5px;
+      padding: 8px 15px;
+      width: 100%;
+      cursor: pointer;
+    }
+    #displayArea {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Registration</h2>
+    <input type="text" id="empname" placeholder="empname">
+    <input type="tel" id="empnumber" placeholder="empnumber">
+    <input type="email" id="empemail" placeholder="empemail">
+
+    <button onClick="register()">Register</button>
+    <button onClick="displayData()">Display registration information</button>
+  </div>
+
+  <script>
+    function login(){
+        function showData(){
+            function register(){
+                let empname=document.getElementById('empname').value;
+                let empnumber=document.getElementById('empnumber').value;
+                let empemail=document.getElementById('empemail').value;
+
+                let Employer={
+                    empname:empname,
+                    empnumber:empnumber,
+                    empemail:empemail
+                }
+
+                localStorage.setItem('Employer',JSON.stringify(Employer));
+
+                alert('Employee Data Registration successfully');
+            }
+            function displayData(){
+                let jsondata=localStorage.getItem('Employer');
+                let emp=JSON.parse(jsondata);
+
+                if (emp) {
+                    let displayArea = document.getElementById('displayArea');
+                    if (!displayArea) {
+                        displayArea = document.createElement('div');
+                        displayArea.id = 'displayArea';
+                        document.querySelector('.container').appendChild(displayArea);
+                    }
+                    displayArea.innerHTML = "<p>Name: " + emp.empname + " | Number: " + emp.empnumber + " | Email: " + emp.empemail + "</p>";
+                }
+            }
+            window.register = register;
+            window.displayData = displayData;
+        }
+        showData();
+    }
+    login();
+  </script>
+
+</body>
+</html>
