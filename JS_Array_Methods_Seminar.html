@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering JavaScript Array Methods — Interactive Seminar & Presentation</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: rgba(18, 24, 38, 0.85);
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --accent-amber: #f59e0b;
+            --accent-emerald: #10b981;
+            --accent-rose: #f43f5e;
+            --accent-cyan: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-sub: #cbd5e1;
+            --code-bg: #070b14;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navigation Bar */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glass);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 30%, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            -webkit-text-fill-color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            background: var(--bg-glass);
+            color: var(--text-main);
+            border: 1px solid var(--border-glass);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            border-color: transparent;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        /* Mode Tabs */
+        .mode-tabs {
+            display: flex;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+            gap: 0.25rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.4rem 0.9rem;
+            border-radius: 0.35rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Slide Presentation Container */
+        .presentation-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .slide-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 1.25rem;
+            width: 100%;
+            min-height: 600px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 102, 241, 0.08);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-glass);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .slide-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            color: var(--primary-light);
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 0.3rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        .slide-counter {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .slide-body {
+            flex: 1;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .slide-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 40%, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-desc {
+            font-size: 1.15rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        /* 2-Column Layout for Content & Code */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+        }
+
+        .info-card h4 {
+            color: var(--accent-cyan);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bullet-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .bullet-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+            font-size: 0.85rem;
+        }
+
+        /* Code Box */
+        .code-container {
+            background: var(--code-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .code-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .mac-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .mac-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        pre code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            padding: 1.25rem;
+            display: block;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        /* Interactive Visual Demonstration Box */
+        .visual-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px dashed rgba(99, 102, 241, 0.35);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .visual-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .array-flow {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .array-pill {
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid var(--primary-light);
+            color: #fff;
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.4rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .array-arrow {
+            color: var(--accent-amber);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .array-pill.transformed {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--accent-emerald);
+            color: #a7f3d0;
+        }
+
+        /* Bottom Slide Controls */
+        .slide-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2rem;
+            border-top: 1px solid var(--border-glass);
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent-cyan));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Speaker Notes Drawer */
+        .speaker-notes-drawer {
+            display: none;
+            background: rgba(7, 11, 20, 0.95);
+            border-top: 2px solid var(--accent-amber);
+            padding: 1.25rem 2rem;
+            color: var(--accent-amber);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .speaker-notes-drawer.open {
+            display: block;
+        }
+
+        .speaker-notes-drawer strong {
+            color: #fff;
+        }
+
+        /* Live Code Sandbox Section */
+        .sandbox-view {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sandbox-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .sandbox-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .sandbox-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 850px) {
+            .sandbox-grid { grid-template-columns: 1fr; }
+        }
+
+        .editor-card {
+            background: var(--code-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .code-textarea {
+            width: 100%;
+            height: 380px;
+            background: transparent;
+            border: none;
+            color: #38bdf8;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            padding: 1.25rem;
+            resize: none;
+            outline: none;
+            line-height: 1.6;
+        }
+
+        .output-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .console-output {
+            background: #000;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            color: #4ade80;
+            min-height: 250px;
+            max-height: 350px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        /* Preset select buttons */
+        .preset-bar {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .preset-chip {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-glass);
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .preset-chip:hover, .preset-chip.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary-light);
+        }
+
+        /* Quick Reference Table Mode */
+        .table-view {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            width: 100%;
+        }
+
+        .cheat-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+        }
+
+        .cheat-table th, .cheat-table td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .cheat-table th {
+            background: rgba(255, 255, 255, 0.04);
+            font-weight: 700;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .cheat-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .badge-no {
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-yes {
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="brand">
+            <span>⚡ JS Array Masterclass</span>
+            <span class="brand-badge">Seminar Deck</span>
+        </div>
+
+        <div class="mode-tabs">
+            <button class="tab-btn active" id="tab-slides" onclick="switchView('slides')">📽️ Slides Mode</button>
+            <button class="tab-btn" id="tab-sandbox" onclick="switchView('sandbox')">💻 Live Sandbox</button>
+            <button class="tab-btn" id="tab-cheat" onclick="switchView('cheat')">📊 Cheat Sheet</button>
+        </div>
+
+        <div class="nav-controls">
+            <button class="btn" id="notes-toggle-btn" onclick="toggleSpeakerNotes()" title="Toggle Speaker Speech Notes (N)">
+                🎙️ Notes
+            </button>
+            <button class="btn btn-primary" onclick="toggleFullscreen()">
+                ⛶ Fullscreen
+            </button>
+        </div>
+    </header>
+
+    <!-- 1. SLIDES PRESENTATION VIEW -->
+    <main class="presentation-wrapper" id="slides-container">
+        <div class="slide-card" id="slide-card">
+            
+            <div class="slide-header">
+                <span class="slide-tag" id="slide-tag">TOPIC 1 / 11</span>
+                <span class="slide-counter" id="slide-counter">Slide 1 of 11</span>
+            </div>
+
+            <div class="slide-body" id="slide-content">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Speaker Notes Dropdown -->
+            <div class="speaker-notes-drawer" id="speaker-notes-drawer">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <div class="slide-footer">
+                <button class="btn" id="btn-prev" onclick="prevSlide()">
+                    ← Previous (Left Arrow)
+                </button>
+                <div style="display:flex; gap: 0.5rem; align-items:center;">
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Use <strong>←</strong> and <strong>→</strong> keys to navigate</span>
+                </div>
+                <button class="btn btn-primary" id="btn-next" onclick="nextSlide()">
+                    Next (Right Arrow) →
+                </button>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 2. LIVE SANDBOX VIEW -->
+    <section class="sandbox-view" id="sandbox-container">
+        <div class="sandbox-header">
+            <h2>🚀 Live Array Method Playground</h2>
+            <p style="color: var(--text-muted);">Select a preset or edit the code live to demonstrate to the audience!</p>
+        </div>
+
+        <div class="preset-bar">
+            <button class="preset-chip active" onclick="loadSandboxPreset('map')">.map() Currency Converter</button>
+            <button class="preset-chip" onclick="loadSandboxPreset('filter')">.filter() In-Stock Products</button>
+            <button class="preset-chip" onclick="loadSandboxPreset('reduce')">.reduce() Cart Total Calculation</button>
+            <button class="preset-chip" onclick="loadSandboxPreset('find')">.find() User Lookup</button>
+            <button class="preset-chip" onclick="loadSandboxPreset('some_every')">.some() & .every() Validations</button>
+            <button class="preset-chip" onclick="loadSandboxPreset('chain')">⚡ Method Pipeline Chaining</button>
+        </div>
+
+        <div class="sandbox-grid">
+            <div class="editor-card">
+                <div class="code-topbar">
+                    <div class="mac-dots">
+                        <span class="mac-dot dot-red"></span>
+                        <span class="mac-dot dot-yellow"></span>
+                        <span class="mac-dot dot-green"></span>
+                    </div>
+                    <span>main.js</span>
+                    <button class="btn btn-primary" style="padding: 0.25rem 0.75rem; font-size: 0.75rem;" onclick="runSandboxCode()">▶ Run Code</button>
+                </div>
+                <textarea class="code-textarea" id="sandbox-code" spellcheck="false"></textarea>
+            </div>
+
+            <div class="output-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="font-size: 1rem; font-weight: 700;">🖥️ Console Output</h3>
+                    <button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="clearConsole()">Clear</button>
+                </div>
+                <div class="console-output" id="console-output">// Output will appear here after clicking "Run Code"...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. CHEAT SHEET VIEW -->
+    <section class="table-view" id="cheat-container">
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem;">📊 Array Methods Master Cheat Sheet</h2>
+        <table class="cheat-table">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>What it Does</th>
+                    <th>Return Value</th>
+                    <th>Mutates Original?</th>
+                    <th>Example Syntax</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong style="color: var(--primary-light);">.map()</strong></td>
+                    <td>Transforms each element into something new</td>
+                    <td>New Array (Same Length)</td>
+                    <td><span class="badge-no">No</span></td>
+                    <td><code>arr.map(x => x * 2)</code></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: var(--accent-emerald);">.filter()</strong></td>
+                    <td>Filters elements based on a condition (`true`/`false`)</td>
+                    <td>New Array (Filtered subset)</td>
+                    <td><span class="badge-no">No</span></td>
+                    <td><code>arr.filter(x => x > 10)</code></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: var(--accent-amber);">.reduce()</strong></td>
+                    <td>Aggregates an entire array into a single accumulated result</td>
+                    <td>Single Value (Num, Obj, Array)</td>
+                    <td><span class="badge-no">No</span></td>
+                    <td><code>arr.reduce((acc, x) => acc + x, 0)</code></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: var(--accent-cyan);">.find()</strong></td>
+                    <td>Finds the <strong>first</strong> item matching a condition</td>
+                    <td>Item or <code>undefined</code></td>
+                    <td><span class="badge-no">No</span></td>
+                    <td><code>arr.find(u => u.id === 5)</code></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: var(--accent-rose);">.findIndex()</strong></td>
+                    <td>Finds index of first matching item</td>
+                    <td>Number Index or <code>-1</code></td>
+                    <td><span class="badge-no">No</span></td>
+                    <td><code>arr.findIndex(u => u.id === 5)</code></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #a855f7;">.some()</strong></td>
+                    <td>Checks if <strong>at least one</strong> element matches condition</td>
+                    <td>Boolean (<code>true</code> / <code>false</code>)</td>
+                    <td><span class="badge-no">No</span></td>
+                    <td><code>arr.some(x => x < 0)</code></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #ec4899;">.every()</strong></td>
+                    <td>Checks if <strong>all</strong> elements match condition</td>
+                    <td>Boolean (<code>true</code> / <code>false</code>)</td>
+                    <td><span class="badge-no">No</span></td>
+                    <td><code>arr.every(x => x >= 35)</code></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #64748b;">.forEach()</strong></td>
+                    <td>Executes a callback function for side effects</td>
+                    <td><code>undefined</code></td>
+                    <td><span class="badge-no">No</span></td>
+                    <td><code>arr.forEach(x => console.log(x))</code></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #eab308;">.sort()</strong></td>
+                    <td>Sorts array elements using compare function</td>
+                    <td>Original Array (Modified)</td>
+                    <td><span class="badge-yes">Yes</span></td>
+                    <td><code>arr.sort((a,b) => a - b)</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Javascript Engine & Slide Data -->
+    <script>
+        const slidesData = [
+            {
+                tag: "SEMINAR INTRODUCTION & COMPARISON",
+                title: "JavaScript Array Methods vs 'for' Loops",
+                desc: "Why Modern JavaScript Replaces 6-Line Loops with 1-Line Safe Methods.",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>🎯 Why Modern Methods?</h4>
+                            <ul class="bullet-list">
+                                <li>❌ <strong>Traditional 'for' Loop:</strong> Requires empty arrays, index counters (<code>i=0</code>), and manual <code>.push()</code>.</li>
+                                <li>✅ <strong>Modern Array Method:</strong> 1-line clean, readable, and declarative code.</li>
+                                <li>🛡️ <strong>ORIGINAL ARRAY STAYS SAME:</strong> Modern methods NEVER modify or destroy original data!</li>
+                            </ul>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>slide1_comparison.js</span>
+                            </div>
+                            <pre><code>let nums = [1, 2, 3];
+
+// ❌ OLD WAY (for loop - 5 lines):
+let doubled1 = [];
+for (let i = 0; i < nums.length; i++) {
+    doubled1.push(nums[i] * 2);
+}
+console.log(doubled1); // 👉 [ 2, 4, 6 ]
+
+// ✅ MODERN WAY (map() - 1 line):
+let doubled2 = nums.map(n => n * 2);
+console.log(doubled2); // 👉 [ 2, 4, 6 ]
+
+console.log(nums);     // 👉 [ 1, 2, 3 ] (ORIGINAL STAYS SAME!)</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "👋 Welcome everyone! Right on Slide 1, you can see how 5 lines of traditional for-loop are replaced by 1 line of map(), and the original array remains 100% untouched!"
+            },
+            {
+                tag: "CORE QUESTION #1",
+                title: "Why Use Array Methods Instead of 'for' Loop?",
+                desc: "Traditional loops work, but they create unnecessary bugs, long code, and accidental mutations.",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>❌ The Old Way: Traditional 'for' Loop</h4>
+                            <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.5rem;">Requires 5-8 lines of code and manual index counter tracking:</p>
+                            <pre style="background:rgba(0,0,0,0.4); padding:0.6rem; border-radius:0.4rem; font-family:'Fira Code'; font-size:0.8rem; color:#f87171;">let marks = [85, 30, 92, 25, 70];
+
+let passed = [];
+for (let i = 0; i < marks.length; i++) {
+    if (marks[i] >= 35) {
+        passed.push(marks[i]);
+    }
+}</pre>
+                            <ul class="bullet-list" style="margin-top:0.6rem;">
+                                <li>Risk of index errors (<code>i <= marks.length</code>)</li>
+                                <li>Requires creating an empty array and manually pushing</li>
+                            </ul>
+                        </div>
+                        <div class="info-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                            <h4>✅ The Modern Way: Array Method (.filter)</h4>
+                            <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.5rem;">1 single line of clean, readable code:</p>
+                            <pre style="background:rgba(0,0,0,0.4); padding:0.6rem; border-radius:0.4rem; font-family:'Fira Code'; font-size:0.8rem; color:#4ade80;">let marks = [85, 30, 92, 25, 70];
+
+let passed = marks.filter(m => m >= 35);</pre>
+                            <ul class="bullet-list" style="margin-top:0.6rem;">
+                                <li>Zero index tracking or off-by-one errors</li>
+                                <li><strong>Declarative:</strong> Explains WHAT you want, not HOW to count</li>
+                                <li><strong>Immutable:</strong> Original array stays safe and untouched</li>
+                            </ul>
+                        </div>
+                    </div>
+                `,
+                notes: "💡 Point out: In a team, reading 'marks.filter()' immediately tells everyone your intent, whereas reading a 6-line for loop forces you to trace 'i' step by step."
+            },
+            {
+                tag: "METHOD 1 / 6",
+                title: "Array.prototype.map() — The Transformer",
+                desc: "Use <code>map()</code> when you want to change or convert <strong>every single item</strong> in a list.",
+                html: `
+                    <div class="grid-2">
+                        <div>
+                            <ul class="bullet-list">
+                                <li><strong>Real-life Analogy:</strong> Giving ₹100 bonus pocket money to every student in class.</li>
+                                <li><strong>Golden Rule:</strong> 5 items in ➔ 5 changed items out (Equal length).</li>
+                                <li><strong>Non-destructive:</strong> Returns a fresh new list; keeps the original untouched.</li>
+                            </ul>
+                            <div class="visual-box">
+                                <div class="visual-title">Visual Transformation</div>
+                                <div class="array-flow">
+                                    <span class="array-pill">50</span>
+                                    <span class="array-pill">60</span>
+                                    <span class="array-pill">70</span>
+                                    <span class="array-arrow">➜ (+5 marks) ➜</span>
+                                    <span class="array-pill transformed">55</span>
+                                    <span class="array-pill transformed">65</span>
+                                    <span class="array-pill transformed">75</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>map_example.js</span>
+                            </div>
+                            <pre><code>let marks = [50, 60, 70];
+
+// Add 5 grace marks to all students
+let newMarks = marks.map(m => m + 5);
+
+console.log(newMarks);
+// 👉 [55, 65, 75]</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "🔑 Point out: .map() ALWAYS returns a new array of the EXACT SAME length. 5 items in = 5 items out."
+            },
+            {
+                tag: "METHOD 2 / 6",
+                title: "Array.prototype.filter() — The Quality Inspector",
+                desc: "Use <code>filter()</code> when you want to keep only the items that pass a rule (where callback returns <code>true</code>).",
+                html: `
+                    <div class="grid-2">
+                        <div>
+                            <ul class="bullet-list">
+                                <li><strong>Real-life Analogy:</strong> A tea strainer keeps the tea and stops the leaves.</li>
+                                <li><strong>Rule:</strong> It tests True or False for each item:</li>
+                                <li>If <code>True</code> ➔ Item stays in the new list.</li>
+                                <li>If <code>False</code> ➔ Item is dropped.</li>
+                                <li><strong>Returns:</strong> An <strong>Array</strong> containing all matching items.</li>
+                            </ul>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>filter_example.js</span>
+                            </div>
+                            <pre><code>let marks = [85, 30, 92, 25, 70];
+
+// Keep all pass marks (>= 35)
+let passed = marks.filter(m => m >= 35);
+
+console.log(passed);
+// 👉 [85, 92, 70] (Returns an Array)</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "💡 Emphasize that filter returns an ARRAY of items."
+            },
+            {
+                tag: "CORE QUESTION #2",
+                title: "find() vs filter() — What is the Difference?",
+                desc: "Both methods search through an array, but they give completely different results!",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>⚖️ Side-by-Side Comparison</h4>
+                            <ul class="bullet-list">
+                                <li><strong><code>filter()</code></strong>: Returns a <strong>LIST (Array)</strong> of ALL matching items. Scans the whole array.</li>
+                                <li><strong><code>find()</code></strong>: Returns <strong>ONLY THE 1ST MATCH</strong> as a single item. Stops scanning immediately! ⚡</li>
+                                <li>If not found: <code>filter()</code> gives <code>[]</code>, while <code>find()</code> gives <code>undefined</code>.</li>
+                            </ul>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>find_vs_filter.js</span>
+                            </div>
+                            <pre><code>let users = [
+  { id: 1, role: 'Admin', name: 'Arun' },
+  { id: 2, role: 'User',  name: 'Priya' },
+  { id: 3, role: 'Admin', name: 'Divakar' }
+];
+
+// 1. filter() -> Gets ALL Admins in an Array:
+let allAdmins = users.filter(u => u.role === 'Admin');
+console.log(allAdmins.length); // 👉 2 items
+
+// 2. find() -> Gets ONLY the FIRST Admin object:
+let firstAdmin = users.find(u => u.role === 'Admin');
+console.log(firstAdmin.name);  // 👉 "Arun"</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "🔍 Ask audience: If you want to check if a user with ID 102 exists to view their profile, do you use find or filter? Ans: find()!"
+            },
+            {
+                tag: "METHOD 4 / 6",
+                title: "Array.prototype.reduce() — The Aggregator",
+                desc: "Use <code>reduce()</code> when you want to calculate all items into <strong>one single final answer</strong> (like a total bill).",
+                html: `
+                    <div class="grid-2">
+                        <div>
+                            <ul class="bullet-list">
+                                <li><strong>Real-life Analogy:</strong> A piggy bank adding coins one by one until you have the final total money.</li>
+                                <li><code>acc</code> (Accumulator): The running total.</li>
+                                <li><strong>Golden Rule:</strong> Always provide an <code>initialValue</code> (usually <code>0</code>)!</li>
+                            </ul>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>reduce_example.js</span>
+                            </div>
+                            <pre><code>let prices = [100, 250, 50, 200];
+
+// Add all prices starting with 0
+let totalBill = prices.reduce((total, price) => {
+    return total + price;
+}, 0);
+
+console.log("Total Bill: ₹" + totalBill);
+// 👉 Total Bill: ₹600</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "⚡ Reduce is like a cash register: scanning item by item and adding to the grand total."
+            },
+            {
+                tag: "METHOD 5 & 6",
+                title: "some() vs every() — The Yes/No Tools",
+                desc: "Use these when you want a simple <code>true</code> or <code>false</code> answer without writing manual if statements.",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>⚡ Logical OR vs Logical AND</h4>
+                            <ul class="bullet-list">
+                                <li><strong><code>.some()</code> (Is ANY matching?)</strong>: Returns <code>true</code> if <em>at least one</em> element passes.</li>
+                                <li><strong><code>.every()</code> (Are ALL matching?)</strong>: Returns <code>true</code> only if <em>every single</em> element passes.</li>
+                            </ul>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>some_every.js</span>
+                            </div>
+                            <pre><code>let marks = [80, 90, 40, 95];
+
+// Did anyone fail? (< 35)
+let anyFail = marks.some(m => m < 35);
+console.log("Any fail?", anyFail); // 👉 false
+
+// Did everyone pass? (>= 35)
+let allPassed = marks.every(m => m >= 35);
+console.log("All passed?", allPassed); // 👉 true</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "💡 some = 'Is there any fruit left in the basket?' every = 'Are all fruits in the basket apples?'"
+            },
+            {
+                tag: "PIPELINE MAGIC",
+                title: "Method Chaining — Putting It All Together!",
+                desc: "Connect methods like train carriages to solve complex problems in 1 clean pipeline.",
+                html: `
+                    <div class="grid-2">
+                        <div>
+                            <div class="info-card">
+                                <h4>🏢 Real-World Supermarket Problem:</h4>
+                                <p style="color:var(--text-sub); font-size:0.88rem; line-height:1.5;">
+                                    1. Pick only <strong>groceries</strong> (<code>.filter</code>)<br>
+                                    2. Add <strong>5% GST tax</strong> (<code>.map</code>)<br>
+                                    3. Calculate the <strong>total payable bill</strong> (<code>.reduce</code>)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>chaining.js</span>
+                            </div>
+                            <pre><code>let items = [
+  { name: 'Rice', type: 'grocery', price: 100 },
+  { name: 'Shirt', type: 'cloth',  price: 500 },
+  { name: 'Dal',  type: 'grocery', price: 200 }
+];
+
+let groceryTotal = items
+  .filter(i => i.type === 'grocery') // 1. Filter
+  .map(i => i.price * 1.05)          // 2. +5% tax
+  .reduce((sum, p) => sum + p, 0);   // 3. Total
+
+console.log("Total: ₹" + groceryTotal);
+// 👉 Total: ₹315</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "🏆 Show how clean this is: 4 lines of code replace 15 lines of nested loops!"
+            },
+            {
+                tag: "EASY UNDERSTANDING",
+                title: "Safe Methods vs Modifying Methods",
+                desc: "The 'Photocopy' Analogy vs 'Writing in Pen on the Original'.",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>📄 Safe Methods (map, filter, reduce)</h4>
+                            <p style="color:var(--text-sub); font-size:0.88rem; line-height:1.5;">
+                                Like making a <strong>Photocopy</strong>: Modifies the copy, leaving the original document 100% clean and untouched!
+                            </p>
+                            <h4 style="margin-top:1rem; color:var(--accent-amber);">✍️ Modifying Methods (push, sort, splice)</h4>
+                            <p style="color:var(--text-sub); font-size:0.88rem; line-height:1.5;">
+                                Like <strong>writing in ink directly on the original document</strong>: Permanently changes the original array!
+                            </p>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>safe_vs_modifying.js</span>
+                            </div>
+                            <pre><code>// 1. ✅ SAFE (.map) -> Like a Photocopy:
+let originalA = [10, 20];
+let copyA = originalA.map(x => x * 2);
+console.log(copyA);     // 👉 [ 20, 40 ] (New Copy)
+console.log(originalA); // 👉 [ 10, 20 ] (ORIGINAL SAFE!)
+
+// 2. ⚠️ MODIFYING (.push) -> Writes on Original:
+let originalB = [10, 20];
+originalB.push(30);
+console.log(originalB); // 👉 [ 10, 20, 30 ] (ORIGINAL CHANGED!)</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "💡 Use the photocopy analogy: map() creates a new photocopy and paints it, while push() writes directly with ink on your original paper."
+            },
+            {
+                tag: "Q&A & THANKS",
+                title: "Thank You & Open Q&A!",
+                desc: "You are now ready to write modern, clean JavaScript code!",
+                html: `
+                    <div style="text-align:center; padding: 2rem 0; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+                        <div style="font-size: 3.5rem;">🎉 🚀 💡</div>
+                        <h3 style="font-size: 1.75rem; color: #fff;">Any Questions on find vs filter or Array Methods?</h3>
+                        <button class="btn btn-primary" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;" onclick="switchView('sandbox')">
+                            Open Interactive Sandbox ➔
+                        </button>
+                    </div>
+                `,
+                notes: "🎤 Thank everyone for attending and open the floor to questions!"
+            }
+        ];
+            {
+                tag: "CORE CONCEPTS",
+                title: "Imperative vs Declarative Programming",
+                desc: "Why did modern JavaScript move away from traditional `for` and `while` loops for array manipulation?",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>❌ Imperative (The Old Way)</h4>
+                            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.75rem;">Telling the engine <strong>HOW</strong> to do every single step:</p>
+                            <pre style="background:rgba(0,0,0,0.4); padding:0.8rem; border-radius:0.4rem; font-family:'Fira Code'; font-size:0.82rem; color:#f87171;">let double = [];
+for (let i = 0; i < nums.length; i++) {
+    double.push(nums[i] * 2);
+}</pre>
+                            <ul class="bullet-list" style="margin-top:0.75rem;">
+                                <li>Risk of index errors (<code>i <= length</code>)</li>
+                                <li>Manual mutation of external arrays</li>
+                            </ul>
+                        </div>
+                        <div class="info-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                            <h4>✅ Declarative (The Modern Way)</h4>
+                            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.75rem;">Telling the engine <strong>WHAT</strong> you want:</p>
+                            <pre style="background:rgba(0,0,0,0.4); padding:0.8rem; border-radius:0.4rem; font-family:'Fira Code'; font-size:0.82rem; color:#4ade80;">const double = nums.map(n => n * 2);</pre>
+                            <ul class="bullet-list" style="margin-top:0.75rem;">
+                                <li>Zero index tracking or off-by-one errors</li>
+                                <li>Immutable: does not destroy original array</li>
+                            </ul>
+                        </div>
+                    </div>
+                `,
+                notes: "💡 Ask the audience: How many times have you accidentally written 'i <= arr.length' and gotten undefined? Declarative methods completely eliminate that category of bugs."
+            },
+            {
+                tag: "METHOD 1 / 8",
+                title: "Array.prototype.map() — The Transformer",
+                desc: "Creates a brand new array populated with the results of calling a provided function on <strong>every single element</strong>.",
+                html: `
+                    <div class="grid-2">
+                        <div>
+                            <ul class="bullet-list">
+                                <li><strong>Rule:</strong> Output array length is <em>always equal</em> to input array length.</li>
+                                <li><strong>Non-mutating:</strong> Original array stays 100% untouched.</li>
+                                <li><strong>Use-cases:</strong> Formatting strings, extracting IDs, converting currencies, rendering React components.</li>
+                            </ul>
+                            <div class="visual-box">
+                                <div class="visual-title">Visual Transformation</div>
+                                <div class="array-flow">
+                                    <span class="array-pill">10</span>
+                                    <span class="array-pill">25</span>
+                                    <span class="array-pill">50</span>
+                                    <span class="array-arrow">➜ (× 80) ➜</span>
+                                    <span class="array-pill transformed">800</span>
+                                    <span class="array-pill transformed">2000</span>
+                                    <span class="array-pill transformed">4000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>map_example.js</span>
+                            </div>
+                            <pre><code>const pricesUSD = [10, 25, 50];
+
+// Transform USD to INR (83 INR per USD)
+const pricesINR = pricesUSD.map(price => price * 83);
+
+console.log(pricesINR); 
+// 👉 [830, 2075, 4150]</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "🔑 Point out: .map() ALWAYS returns a new array of the EXACT SAME length. If you have 5 items in, you get 5 items out."
+            },
+            {
+                tag: "METHOD 2 / 8",
+                title: "Array.prototype.filter() — The Quality Inspector",
+                desc: "Returns a new array containing only the elements that satisfy a condition (where the callback returns <code>true</code>).",
+                html: `
+                    <div class="grid-2">
+                        <div>
+                            <ul class="bullet-list">
+                                <li><strong>Rule:</strong> Output array length $\\le$ Input array length.</li>
+                                <li>If no elements match, returns an empty array <code>[]</code>.</li>
+                                <li><strong>Use-cases:</strong> Search filters, in-stock products, passing exam marks, active users.</li>
+                            </ul>
+                            <div class="visual-box">
+                                <div class="visual-title">Filter Inspection (keep inStock === true)</div>
+                                <div class="array-flow">
+                                    <span class="array-pill">Laptop: ✅</span>
+                                    <span class="array-pill" style="opacity:0.4; text-decoration:line-through;">Phone: ❌</span>
+                                    <span class="array-pill">Mouse: ✅</span>
+                                    <span class="array-arrow">➜ Filtered ➜</span>
+                                    <span class="array-pill transformed">Laptop</span>
+                                    <span class="array-pill transformed">Mouse</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>filter_example.js</span>
+                            </div>
+                            <pre><code>const products = [
+  { name: "Laptop", inStock: true, price: 900 },
+  { name: "Phone", inStock: false, price: 500 },
+  { name: "Mouse", inStock: true, price: 25 }
+];
+
+const available = products.filter(item => item.inStock);
+
+console.log(available);
+// 👉 [{ name: "Laptop", ... }, { name: "Mouse", ... }]</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "💡 Emphasize that the callback function inside filter must return a Boolean (truthy/falsy). If true, the item is kept; if false, it is dropped."
+            },
+            {
+                tag: "METHOD 3 / 8",
+                title: "Array.prototype.reduce() — The Aggregator",
+                desc: "The most versatile method in JavaScript! Collapses an entire array into a <strong>single accumulated value</strong> (number, object, string, or array).",
+                html: `
+                    <div class="grid-2">
+                        <div>
+                            <ul class="bullet-list">
+                                <li><strong>Syntax:</strong> <code>arr.reduce((acc, curr) => ..., initialVal)</code></li>
+                                <li><code>acc</code> (Accumulator): Remembers the running total across each step.</li>
+                                <li><code>curr</code> (Current): The current item being processed.</li>
+                                <li><strong>Golden Rule:</strong> ALWAYS provide the <code>initialValue</code> (e.g. <code>0</code> or <code>{}</code>)!</li>
+                            </ul>
+                            <div class="visual-box">
+                                <div class="visual-title">Accumulator Step-by-Step (Cart Total)</div>
+                                <div class="array-flow">
+                                    <span class="array-pill">Start: 0</span>
+                                    <span class="array-arrow">➜ +250 ➜</span>
+                                    <span class="array-pill">250</span>
+                                    <span class="array-arrow">➜ +100 ➜</span>
+                                    <span class="array-pill transformed">Final: ₹350</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>reduce_example.js</span>
+                            </div>
+                            <pre><code>const cart = [
+  { item: "Book", price: 250, qty: 2 },  // 500
+  { item: "Pen",  price: 20,  qty: 5 }   // 100
+];
+
+const totalBill = cart.reduce((acc, product) => {
+  return acc + (product.price * product.qty);
+}, 0); // 0 is initialValue
+
+console.log("Total: ₹" + totalBill); // 👉 Total: ₹600</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "⚡ Reduce is often feared by beginners because of the accumulator. Explain the snowball analogy: the accumulator is a snowball that rolls down a snowy hill, gathering size from each element."
+            },
+            {
+                tag: "METHOD 4 & 5",
+                title: "find() & findIndex() — Instant Search",
+                desc: "When you need only the <strong>first match</strong>, not an entire array.",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>⚖️ find() vs filter()</h4>
+                            <ul class="bullet-list">
+                                <li><code>filter()</code> searches the entire array and returns an <strong>Array</strong>.</li>
+                                <li><code>find()</code> stops searching the moment it finds the 1st match and returns the <strong>Item itself</strong>.</li>
+                                <li>If not found: <code>find()</code> returns <code>undefined</code>, while <code>findIndex()</code> returns <code>-1</code>.</li>
+                            </ul>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>find_example.js</span>
+                            </div>
+                            <pre><code>const users = [
+  { id: 101, name: "Arun" },
+  { id: 102, name: "Priya" },
+  { id: 103, name: "Kavya" }
+];
+
+// Find single user with ID 102
+const user = users.find(u => u.id === 102);
+console.log(user); 
+// 👉 { id: 102, name: "Priya" }
+
+const index = users.findIndex(u => u.id === 102);
+console.log(index); // 👉 1</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "🔍 Highlight performance: 'find' is much faster for large arrays when looking for a unique ID because it terminates early (short-circuits)."
+            },
+            {
+                tag: "METHOD 6 & 7",
+                title: "some() vs every() — Boolean Integrity Checks",
+                desc: "Quickly validate conditions across all elements without writing manual flag variables.",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>⚡ Logical OR vs Logical AND</h4>
+                            <ul class="bullet-list">
+                                <li><strong><code>.some()</code> (OR $\\lor$)</strong>: Returns <code>true</code> if <em>at least one</em> element passes the test.</li>
+                                <li><strong><code>.every()</code> (AND $\\land$)</strong>: Returns <code>true</code> only if <em>every single</em> element passes the test.</li>
+                                <li>Both methods short-circuit early for optimal speed!</li>
+                            </ul>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>boolean_checks.js</span>
+                            </div>
+                            <pre><code>const marks = [85, 92, 78, 45, 99];
+
+// Did anyone fail? (Mark < 50)
+const hasFailed = marks.some(m => m < 50);
+console.log("Any failures?", hasFailed); 
+// 👉 true (because 45 < 50)
+
+// Did everyone score distinction? (>= 75)
+const allDistinction = marks.every(m => m >= 75);
+console.log("All distinction?", allDistinction);
+// 👉 false (45 is not >= 75)</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "💡 Real world example: Use 'every' before checkout to verify all cart items have valid shipping addresses and stock."
+            },
+            {
+                tag: "METHOD 8 / 8",
+                title: "sort() & toSorted() — Safe Ordering",
+                desc: "Sorting numbers in JavaScript has a notorious trap. Here is how to master it.",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>⚠️ The Default Sort Trap!</h4>
+                            <p style="color:var(--accent-rose); font-size:0.9rem; margin-bottom:0.5rem;"><code>[10, 5, 100].sort()</code> produces <code>[10, 100, 5]</code></p>
+                            <p style="color:var(--text-sub); font-size:0.85rem;">Because it converts numbers to strings and sorts alphabetically ("100" comes before "5")!</p>
+                            <h4 style="margin-top:1rem; color:var(--accent-emerald);">✅ The Fix: Comparator Function</h4>
+                            <p style="color:var(--text-sub); font-size:0.85rem;">Pass <code>(a, b) => a - b</code> for ascending, and <code>(a, b) => b - a</code> for descending.</p>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>sorting.js</span>
+                            </div>
+                            <pre><code>const scores = [45, 12, 89, 23, 7];
+
+// Ascending Order (Smallest to Largest)
+const ascending = [...scores].sort((a, b) => a - b);
+console.log(ascending); // 👉 [7, 12, 23, 45, 89]
+
+// Descending Order (Largest to Smallest)
+const descending = [...scores].sort((a, b) => b - a);
+console.log(descending); // 👉 [89, 45, 23, 12, 7]</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "⚠️ Note to audience: .sort() mutates the array in place! Always make a copy using [...arr].sort() or the new ES2023 arr.toSorted()."
+            },
+            {
+                tag: "GRAND FINALE",
+                title: "The Power of Method Chaining (Pipelines)",
+                desc: "Combine <code>filter</code>, <code>map</code>, and <code>reduce</code> into a single readable data processing pipeline.",
+                html: `
+                    <div class="grid-2">
+                        <div>
+                            <div class="info-card">
+                                <h4>🏢 Real-World Problem:</h4>
+                                <p style="color:var(--text-sub); font-size:0.9rem; line-height:1.5;">
+                                    "From our company roster, find all <strong>Engineering</strong> team members, apply a <strong>10% festive bonus</strong>, and calculate the total payout."
+                                </p>
+                            </div>
+                            <div class="visual-box" style="margin-top:1rem;">
+                                <div class="visual-title">Pipeline Stages</div>
+                                <div style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem; font-family:'Fira Code';">
+                                    <div>1️⃣ <code>.filter()</code> ➔ Select 3 Engineers</div>
+                                    <div>2️⃣ <code>.map()</code> ➔ Multiply salaries by 1.10</div>
+                                    <div>3️⃣ <code>.reduce()</code> ➔ Sum into Grand Total</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div class="code-topbar">
+                                <div class="mac-dots"><span class="mac-dot dot-red"></span><span class="mac-dot dot-yellow"></span><span class="mac-dot dot-green"></span></div>
+                                <span>chaining.js</span>
+                            </div>
+                            <pre><code>const employees = [
+  { name: "Divakar", dept: "Engineering", salary: 60000 },
+  { name: "Sneha",   dept: "HR",          salary: 45000 },
+  { name: "Rahul",   dept: "Engineering", salary: 80000 },
+  { name: "Ananya",  dept: "Marketing",   salary: 50000 },
+  { name: "Vikas",   dept: "Engineering", salary: 75000 }
+];
+
+const totalBonusPayroll = employees
+  .filter(e => e.dept === "Engineering")
+  .map(e => e.salary * 1.10)
+  .reduce((acc, salary) => acc + salary, 0);
+
+console.log("Total Payroll: ₹" + totalBonusPayroll.toLocaleString());
+// 👉 Total Payroll: ₹236,500</code></pre>
+                        </div>
+                    </div>
+                `,
+                notes: "🏆 Walk through the pipeline step by step. Highlight how clean this is compared to a 15-line nested for-loop with temporary variables."
+            },
+            {
+                tag: "SUMMARY",
+                title: "Decision Tree: Which Method When?",
+                desc: "A quick mental model for picking the right method in any coding interview or project.",
+                html: `
+                    <div class="grid-2">
+                        <div class="info-card">
+                            <h4>🤔 Ask yourself what you need:</h4>
+                            <ul class="bullet-list">
+                                <li>Want to <strong>modify every item</strong>? ➔ <code>.map()</code></li>
+                                <li>Want to <strong>pick certain items</strong>? ➔ <code>.filter()</code></li>
+                                <li>Want a <strong>single calculated total / object</strong>? ➔ <code>.reduce()</code></li>
+                                <li>Want <strong>one specific item</strong>? ➔ <code>.find()</code></li>
+                                <li>Want a <strong>Yes / No answer</strong>? ➔ <code>.some()</code> or <code>.every()</code></li>
+                                <li>Just want to <strong>log or trigger an API</strong>? ➔ <code>.forEach()</code></li>
+                            </ul>
+                        </div>
+                        <div class="info-card" style="background:rgba(99, 102, 241, 0.1); border-color:var(--primary);">
+                            <h4>💡 Key Takeaway</h4>
+                            <p style="color:#fff; font-size:1.05rem; line-height:1.6; margin-top:0.5rem;">
+                                "Higher-order methods make code self-documenting. Anyone reading your code immediately understands the intent without having to trace loop index variables."
+                            </p>
+                        </div>
+                    </div>
+                `,
+                notes: "📝 Remind everyone that clean code is not about showing off—it is about making code easy to read, test, and maintain for your teammates."
+            },
+            {
+                tag: "Q&A & THANKS",
+                title: "Thank You & Open Q&A!",
+                desc: "Let's test these live in the Sandbox tab or answer questions from the audience.",
+                html: `
+                    <div style="text-align:center; padding: 2rem 0; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+                        <div style="font-size: 3.5rem;">🎉 🚀 💻</div>
+                        <h3 style="font-size: 1.75rem; color: #fff;">Ready for live coding?</h3>
+                        <p style="max-width: 600px; color: var(--text-sub); font-size: 1.1rem;">
+                            Switch to the <strong>Live Sandbox</strong> tab above to experiment with live data sets and run interactive tests!
+                        </p>
+                        <button class="btn btn-primary" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;" onclick="switchView('sandbox')">
+                            Open Interactive Sandbox ➔
+                        </button>
+                    </div>
+                `,
+                notes: "🎤 Invite questions from the audience: e.g. What about performance with very large datasets? (Ans: For millions of items, traditional for loops or Web Workers can be used, but for 99% of app logic, methods are optimal)."
+            }
+        ];
+
+        let currentSlide = 0;
+        let speakerNotesOpen = false;
+
+        function renderSlide() {
+            const slide = slidesData[currentSlide];
+            document.getElementById('slide-tag').innerText = slide.tag;
+            document.getElementById('slide-counter').innerText = `Slide ${currentSlide + 1} of ${slidesData.length}`;
+            
+            const content = `
+                <div>
+                    <h1 class="slide-title">${slide.title}</h1>
+                    <p class="slide-desc">${slide.desc}</p>
+                </div>
+                ${slide.html}
+            `;
+            document.getElementById('slide-content').innerHTML = content;
+            
+            document.getElementById('speaker-notes-drawer').innerHTML = `
+                <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.4rem;">
+                    <span>🎙️</span><strong>Presenter Speech Notes:</strong>
+                </div>
+                <div>${slide.notes}</div>
+            `;
+
+            // Progress bar
+            const pct = ((currentSlide + 1) / slidesData.length) * 100;
+            document.getElementById('progress-bar').style.width = pct + '%';
+
+            // Button states
+            document.getElementById('btn-prev').disabled = currentSlide === 0;
+            document.getElementById('btn-prev').style.opacity = currentSlide === 0 ? '0.4' : '1';
+            document.getElementById('btn-next').innerText = currentSlide === slidesData.length - 1 ? 'Finish 🏁' : 'Next (Right Arrow) →';
+        }
+
+        function nextSlide() {
+            if (currentSlide < slidesData.length - 1) {
+                currentSlide++;
+                renderSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlide();
+            }
+        }
+
+        function toggleSpeakerNotes() {
+            speakerNotesOpen = !speakerNotesOpen;
+            const drawer = document.getElementById('speaker-notes-drawer');
+            const btn = document.getElementById('notes-toggle-btn');
+            if (speakerNotesOpen) {
+                drawer.classList.add('open');
+                btn.style.background = 'var(--accent-amber)';
+                btn.style.color = '#000';
+            } else {
+                drawer.classList.remove('open');
+                btn.style.background = 'var(--bg-glass)';
+                btn.style.color = 'var(--text-main)';
+            }
+        }
+
+        // Keyboard navigation
+        window.addEventListener('keydown', (e) => {
+            if (document.getElementById('slides-container').style.display === 'none') return;
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'n' || e.key === 'N') {
+                toggleSpeakerNotes();
+            }
+        });
+
+        // View switching
+        function switchView(view) {
+            document.getElementById('slides-container').style.display = view === 'slides' ? 'flex' : 'none';
+            document.getElementById('sandbox-container').style.display = view === 'sandbox' ? 'flex' : 'none';
+            document.getElementById('cheat-container').style.display = view === 'cheat' ? 'block' : 'none';
+
+            document.getElementById('tab-slides').classList.toggle('active', view === 'slides');
+            document.getElementById('tab-sandbox').classList.toggle('active', view === 'sandbox');
+            document.getElementById('tab-cheat').classList.toggle('active', view === 'cheat');
+
+            if (view === 'sandbox') {
+                loadSandboxPreset('map');
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => alert(err.message));
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Live Sandbox Presets
+        const sandboxPresets = {
+            map: `// 1. Array.prototype.map() Demonstration
+const pricesUSD = [12.99, 45.50, 99.00, 5.25];
+const USD_TO_INR_RATE = 83.25;
+
+console.log("Original USD Prices:", pricesUSD);
+
+// Map to INR formatted strings
+const pricesINR = pricesUSD.map(price => {
+    const converted = price * USD_TO_INR_RATE;
+    return "₹" + converted.toFixed(2);
+});
+
+console.log("Converted INR Prices:", pricesINR);`,
+
+            filter: `// 2. Array.prototype.filter() Demonstration
+const inventory = [
+    { name: "Wireless Mouse", category: "Electronics", inStock: true, price: 29.99 },
+    { name: "Gaming Keyboard", category: "Electronics", inStock: false, price: 89.99 },
+    { name: "Coffee Mug", category: "Kitchen", inStock: true, price: 12.50 },
+    { name: "4K Monitor", category: "Electronics", inStock: true, price: 299.99 }
+];
+
+console.log("All Products count:", inventory.length);
+
+// Filter only Electronics that are in stock
+const availableElectronics = inventory.filter(item => {
+    return item.category === "Electronics" && item.inStock === true;
+});
+
+console.log("Available Electronics:", availableElectronics);`,
+
+            reduce: `// 3. Array.prototype.reduce() Shopping Cart Total
+const shoppingCart = [
+    { item: "JavaScript Book", price: 499, quantity: 2 },
+    { item: "USB Hub", price: 850, quantity: 1 },
+    { item: "Desk Pad", price: 350, quantity: 2 }
+];
+
+console.log("Shopping Cart:", shoppingCart);
+
+const grandTotal = shoppingCart.reduce((accumulator, currentItem) => {
+    const itemSubtotal = currentItem.price * currentItem.quantity;
+    console.log(\`Adding \${currentItem.item}: ₹\${itemSubtotal}\`);
+    return accumulator + itemSubtotal;
+}, 0);
+
+console.log("----------------------------");
+console.log("Grand Total Payable: ₹" + grandTotal);`,
+
+            find: `// 4. Array.prototype.find() & findIndex()
+const students = [
+    { rollNo: 101, name: "Aarav", grade: "A" },
+    { rollNo: 102, name: "Diya", grade: "A+" },
+    { rollNo: 103, name: "Kiran", grade: "B" }
+];
+
+const targetRoll = 102;
+const resultStudent = students.find(s => s.rollNo === targetRoll);
+
+console.log("Searching for Roll #" + targetRoll + ":");
+console.log("Found:", resultStudent);
+
+const index = students.findIndex(s => s.rollNo === targetRoll);
+console.log("Index position in array:", index);`,
+
+            some_every: `// 5. Array.prototype.some() & every()
+const marks = [78, 85, 92, 45, 88];
+
+console.log("Student Subject Marks:", marks);
+
+// Check if any mark is below passing (35)
+const hasFailed = marks.some(m => m < 35);
+console.log("Has student failed any subject (<35)?:", hasFailed);
+
+// Check if student scored first class in all (>= 60)
+const allFirstClass = marks.every(m => m >= 60);
+console.log("Did student get First Class in ALL subjects (>=60)?:", allFirstClass);`,
+
+            chain: `// 6. Complete Pipeline Chaining
+const team = [
+    { name: "Divakar", dept: "Engineering", salary: 65000, active: true },
+    { name: "Kavya", dept: "HR", salary: 45000, active: true },
+    { name: "Rahul", dept: "Engineering", salary: 85000, active: true },
+    { name: "Sneha", dept: "Engineering", salary: 72000, active: false },
+    { name: "Vikas", dept: "Marketing", salary: 50000, active: true }
+];
+
+// Goal: Active Engineers -> 10% bonus -> Total expenditure
+const totalPayout = team
+    .filter(member => member.dept === "Engineering" && member.active)
+    .map(member => ({
+        name: member.name,
+        revisedSalary: member.salary * 1.10
+    }))
+    .reduce((sum, member) => {
+        console.log(\`\${member.name} with bonus: ₹\${member.revisedSalary.toLocaleString()}\`);
+        return sum + member.revisedSalary;
+    }, 0);
+
+console.log("=========================================");
+console.log("Total Payroll for Active Engineers: ₹" + totalPayout.toLocaleString());`
+        };
+
+        function loadSandboxPreset(key) {
+            document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+            document.getElementById('sandbox-code').value = sandboxPresets[key];
+            runSandboxCode();
+        }
+
+        function clearConsole() {
+            document.getElementById('console-output').innerText = "";
+        }
+
+        function runSandboxCode() {
+            const code = document.getElementById('sandbox-code').value;
+            const consoleOutputEl = document.getElementById('console-output');
+            consoleOutputEl.innerText = "";
+
+            let logs = [];
+            const originalLog = console.log;
+
+            console.log = function(...args) {
+                logs.push(args.map(arg => {
+                    if (typeof arg === 'object' && arg !== null) {
+                        return JSON.stringify(arg, null, 2);
+                    }
+                    return String(arg);
+                }).join(" "));
+                originalLog.apply(console, args);
+            };
+
+            try {
+                const runner = new Function(code);
+                runner();
+                consoleOutputEl.innerText = logs.join("\n");
+            } catch (err) {
+                consoleOutputEl.innerText = "❌ Error: " + err.message;
+            } finally {
+                console.log = originalLog;
+            }
+        }
+
+        // Initialize presentation
+        renderSlide();
+    </script>
+</body>
+</html>

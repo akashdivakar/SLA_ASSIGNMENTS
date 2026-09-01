@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [10, 5, 8, 5, -2, 10, 7, -2, 3];
+
+let sum = 0;
+
+for (let i = 0; i < arr.length; i++) {
+    sum = sum + arr[i];
+}
+
+let average = sum / arr.length;
+
+console.log("Sum =", sum);
+console.log("Average =", average);
+
+
+let arr1 = [10, 5, 8, 5, -2, 10, 7, -2, 3];
+
+let largest = arr[0];
+
+for (let i = 1; i < arr1.length; i++) {
+    if (arr1[i] > largest) {
+        largest = arr1[i];
+    }
+}
+
+console.log("Largest =", largest);
+
+let arr3 = [10, 5, 8, 5, -2, 10, 7, -2, 3];
+
+let smallest = arr3[0];
+
+for (let i = 1; i < arr3.length; i++) {
+    if (arr3[i] < smallest) {
+        smallest = arr3[i];
+    }
+}
+
+console.log("Smallest =", smallest);
+
+let arr4 = [10, 5, 8, 5, -2, 10, 7, -2, 3];
+
+let positive = 0;
+let negative = 0;
+
+for (let i = 0; i < arr4.length; i++) {
+
+    if (arr4[i] > 0) {
+        positive++;
+    } 
+    else if (arr4[i] < 0) {
+        negative++;
+    }
+}
+
+console.log("Positive numbers =", positive);
+console.log("Negative numbers =", negative);
+
+let arr5 = [10, 5, 8, 5, -2, 10, 7, -2, 3];
+
+for (let i = 0; i < arr5.length; i++) {
+
+    for (let j = i + 1; j < arr5.length; j++) {
+
+        if (arr5[i] === arr5[j]) {
+            console.log("Duplicate =", arr5[i]);
+            break;
+        }
+    }
+}
+
+let arr6 = [10, 5, 8, 5, -2, 10, 7, -2, 3];
+
+let search = 7;
+let found = false;
+
+for (let i = 0; i < arr6.length; i++) {
+
+    if (arr6[i] === search) {
+        console.log("Element found at index", i);
+        found = true;
+        break;
+    }
+}
+
+if (!found) {
+    console.log("Element not found");
+}
+
+let arr7 = [10, 5, 8, 5, -2, 10, 7, -2, 3];
+
+let frequency = {};
+
+for (let i = 0; i < arr7.length; i++) {
+
+    let value = arr7[i];
+
+    if (frequency[value]) {
+        frequency[value]++;
+    } 
+    else {
+        frequency[value] = 1;
+    }
+}
+
+console.log(frequency);
+
+
+let arr8 = [1, 2, 3, 4, 5];
+
+let sorted = true;
+
+for (let i = 0; i < arr8.length - 1; i++) {
+
+    if (arr8[i] > arr8[i + 1]) {
+        sorted = false;
+        break;
+    }
+}
+
+if (sorted) {
+    console.log("Array is sorted");
+} 
+else {
+    console.log("Array is not sorted");
+}
+
+let arr9 = [1, 2, 3, 5];
+
+let n = 5;
+
+let expectedSum = n * (n + 1) / 2;
+
+let actualSum = 0;
+
+for (let i = 0; i < arr9.length; i++) {
+    actualSum = actualSum + arr9[i];
+}
+
+let missing = expectedSum - actualSum;
+
+console.log("Missing number =", missing);
+
+let arr10 = [1, 2, 3, 4, 5, 6, 7, 8];
+
+let even = [];
+let odd = [];
+
+for (let i = 0; i < arr10.length; i++) {
+
+    if (arr10[i] % 2 === 0) {
+        even.push(arr10[i]);
+    } 
+    else {
+        odd.push(arr10[i]);
+    }
+}
+
+console.log("Even numbers =", even);
+console.log("Odd numbers =", odd);
+        </script>
+</body>
+</html>

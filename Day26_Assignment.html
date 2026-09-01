@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Click</title>
+</head>
+
+
+ <style>
+        #box {
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+     <style>
+        #username {
+            padding: 10px;
+            border: 2px solid gray;
+            outline: none;
+        }
+    </style>
+<body>
+
+    <button id="helloBtn">Click Me</button>
+    <p id="message"></p>
+
+    <script>
+        const button = document.getElementById("helloBtn");
+        const message = document.getElementById("message");
+
+        button.addEventListener("click", function () {
+            message.textContent = "Hello, World!";
+        });
+    </script>
+
+
+
+
+    <p id="text">This is my paragraph.</p>
+
+    <button id="colorBtn">Change Color</button>
+
+    <script>
+        const paragraph = document.getElementById("text");
+        const button1 = document.getElementById("colorBtn");
+
+        button1.addEventListener("click", function () {
+            paragraph.style.color = "red";
+        });
+    </script>
+
+
+<br>
+<br>
+
+    <input type="text" id="userInput" placeholder="Enter something">
+
+    <button id="showBtn">Show Text</button>
+
+    <p id="result"></p>
+
+    <script>
+        const input = document.getElementById("userInput");
+        const button3 = document.getElementById("showBtn");
+        const result = document.getElementById("result");
+
+        button3.addEventListener("click", function () {
+            result.textContent = input.value;
+        });
+    </script>
+
+<br>
+
+    <button id="countBtn">Click Me</button>
+
+    <p>Button clicked: <span id="count">0</span> times</p>
+
+    <script>
+        const button4 = document.getElementById("countBtn");
+        const countDisplay = document.getElementById("count");
+
+        let count = 0;
+
+        button4.addEventListener("click", function () {
+            count++;
+            countDisplay.textContent = count;
+        });
+    </script>
+
+    <br>
+
+<div id="box">Move Mouse Here</div>
+
+    <script>
+        const box = document.getElementById("box");
+
+        box.addEventListener("mouseover", function () {
+            box.style.backgroundColor = "orange";
+        });
+
+        box.addEventListener("mouseout", function () {
+            box.style.backgroundColor = "lightblue";
+        });
+    </script>
+
+<br>
+
+    <button id="doubleBtn">Double Click Me</button>
+
+    <script>
+        const button5 = document.getElementById("doubleBtn");
+
+        button5.addEventListener("dblclick", function () {
+            alert("Button was double-clicked!");
+        });
+    </script>
+
+
+
+
+
+
+    <input type="text" id="keyboardInput" placeholder="Press any key">
+
+    <p>Key pressed: <span id="keyDisplay"></span></p>
+
+    <script>
+        const input2 = document.getElementById("keyboardInput");
+        const display = document.getElementById("keyDisplay");
+
+        input2.addEventListener("keydown", function (event) {
+            display.textContent = event.key;
+        });
+    </script>
+
+
+
+
+    <p id="paragraph">
+        This is a paragraph that can be hidden and shown.
+    </p>
+
+    <button id="toggleBtn">Hide</button>
+
+    <script>
+        const paragraph1 = document.getElementById("paragraph");
+        const button6 = document.getElementById("toggleBtn");
+
+        button6.addEventListener("click", function () {
+
+            if (paragraph1.style.display === "none") {
+                paragraph1.style.display = "block";
+                button.textContent = "Hide";
+            } else {
+                paragraph1.style.display = "none";
+                button.textContent = "Show";
+            }
+
+        });
+    </script>
+
+
+<br>
+
+ <img
+    id="myImage"
+    src="watch.avif"
+    alt="Sample Image"
+    width="200"
+>
+
+<br><br>
+
+<button id="changeImageBtn">Change Image</button>
+
+<script>
+    const image = document.getElementById("myImage");
+    const button7 = document.getElementById("changeImageBtn");
+
+    button7.addEventListener("click", function () {
+        image.src = "meadow.jpg";
+    });
+</script>
+
+
+
+   
+<br>
+<br>
+    <input
+        type="text"
+        id="username"
+        placeholder="Enter your name"
+    >
+
+    <script>
+        const input3 = document.getElementById("username");
+
+       input3.addEventListener("focus", function () {
+    input3.style.border = "2px solid blue";
+});
+
+input3.addEventListener("blur", function () {
+    input3.style.border = "2px solid gray";
+});
+     
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

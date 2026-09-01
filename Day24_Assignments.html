@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .task {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .myParagraph {
+            padding: 10px;
+        }
+
+        .myButton {
+            padding: 10px 20px;
+        }
+
+        .text {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>JavaScript DOM Basic Tasks</h1>
+
+    <div class="task">
+        <h2>Task 1 - Change Heading</h2>
+
+        <h3 id="heading1">Hello World</h3>
+
+        <button id="changeHeadingBtn">
+            Change Heading
+        </button>
+    </div>
+
+
+    <div class="task">
+        <h2>Task 2 - Change Paragraph Style</h2>
+
+        <p id="paragraph1">
+            This is my paragraph.
+        </p>
+
+        <button id="changeParagraphBtn">
+            Change Paragraph Style
+        </button>
+    </div>
+
+
+    <div class="task">
+        <h2>Task 3 - Change All Paragraphs to Green</h2>
+
+        <p>Paragraph One</p>
+        <p>Paragraph Two</p>
+        <p>Paragraph Three</p>
+        <p>Paragraph Four</p>
+
+        <button id="greenBtn">
+            Change All Paragraphs to Green
+        </button>
+    </div>
+
+
+    <div class="task">
+        <h2>Task 4 - Count List Items</h2>
+
+        <ul>
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Orange</li>
+            <li>Mango</li>
+            <li>Grapes</li>
+        </ul>
+
+        <button id="countBtn">
+            Count List Items
+        </button>
+
+        <p id="countResult"></p>
+    </div>
+
+
+    <div class="task">
+        <h2>Task 5 - Change Background</h2>
+
+        <p class="myParagraph">
+            Paragraph One
+        </p>
+
+        <p class="myParagraph">
+            Paragraph Two
+        </p>
+
+        <p class="myParagraph">
+            Paragraph Three
+        </p>
+
+        <button id="backgroundBtn">
+            Change Background
+        </button>
+    </div>
+
+
+    <div class="task">
+        <h2>Task 6 - Disable All Buttons</h2>
+
+        <button class="myButton">Button 1</button>
+        <button class="myButton">Button 2</button>
+        <button class="myButton">Button 3</button>
+        <button class="myButton">Button 4</button>
+
+        <br>
+
+        <button id="disableBtn">
+            Disable All Buttons
+        </button>
+    </div>
+
+
+    <div class="task">
+        <h2>Task 7 - querySelector()</h2>
+
+        <h3 id="heading2">
+            Old Heading
+        </h3>
+
+        <button id="queryHeadingBtn">
+            Change Heading
+        </button>
+    </div>
+
+
+    <div class="task">
+        <h2>Task 8 - querySelectorAll()</h2>
+
+        <p class="text">Paragraph One</p>
+        <p class="text">Paragraph Two</p>
+        <p class="text">Paragraph Three</p>
+        <p class="text">Paragraph Four</p>
+        <p class="text">Paragraph Five</p>
+
+        <button id="styleAllBtn">
+            Change All Text
+        </button>
+    </div>
+
+
+    <script>
+
+        const heading1 =
+            document.getElementById("heading1");
+
+        const changeHeadingBtn =
+            document.getElementById("changeHeadingBtn");
+
+        changeHeadingBtn.addEventListener("click", function() {
+
+            heading1.textContent =
+                "Welcome to JavaScript DOM!";
+
+        });
+
+
+        const paragraph1 =
+            document.getElementById("paragraph1");
+
+        const changeParagraphBtn =
+            document.getElementById("changeParagraphBtn");
+
+        changeParagraphBtn.addEventListener("click", function() {
+
+            paragraph1.style.color = "blue";
+
+            paragraph1.style.fontSize = "25px";
+
+        });
+
+
+        const allParagraphs =
+            document.getElementsByTagName("p");
+
+        const greenBtn =
+            document.getElementById("greenBtn");
+
+        greenBtn.addEventListener("click", function() {
+
+            for (let i = 0; i < allParagraphs.length; i++) {
+
+                allParagraphs[i].style.color = "green";
+
+            }
+
+        });
+
+
+        const listItems =
+            document.getElementsByTagName("li");
+
+        const countBtn =
+            document.getElementById("countBtn");
+
+        const countResult =
+            document.getElementById("countResult");
+
+        countBtn.addEventListener("click", function() {
+
+            countResult.textContent =
+                "Total number of list items: "
+                + listItems.length;
+
+        });
+
+
+        const myParagraphs =
+            document.getElementsByClassName("myParagraph");
+
+        const backgroundBtn =
+            document.getElementById("backgroundBtn");
+
+        backgroundBtn.addEventListener("click", function() {
+
+            for (let i = 0; i < myParagraphs.length; i++) {
+
+                myParagraphs[i].style.backgroundColor =
+                    "yellow";
+
+            }
+
+        });
+
+
+        const myButtons =
+            document.getElementsByClassName("myButton");
+
+        const disableBtn =
+            document.getElementById("disableBtn");
+
+        disableBtn.addEventListener("click", function() {
+
+            for (let i = 0; i < myButtons.length; i++) {
+
+                myButtons[i].disabled = true;
+
+            }
+
+        });
+
+
+        const heading2 =
+            document.querySelector("#heading2");
+
+        const queryHeadingBtn =
+            document.querySelector("#queryHeadingBtn");
+
+        queryHeadingBtn.addEventListener("click", function() {
+
+            heading2.textContent =
+                "Heading Changed Using querySelector()";
+
+        });
+
+
+        const textElements =
+            document.querySelectorAll(".text");
+
+        const styleAllBtn =
+            document.querySelector("#styleAllBtn");
+
+        styleAllBtn.addEventListener("click", function() {
+
+            textElements.forEach(function(element) {
+
+                element.style.color = "blue";
+
+                element.style.fontStyle = "italic";
+
+            });
+
+        });
+
+    </script>
+
+
+
+</body>
+</html>
