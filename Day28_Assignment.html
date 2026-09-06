@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        
+class Car {
+    constructor(brand, model, year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+
+    displayDetails() {
+        console.log("Brand:", this.brand);
+        console.log("Model:", this.model);
+        console.log("Year:", this.year);
+    }
+}
+
+const car = new Car("Toyota", "Fortuner", 2024);
+
+console.log("Car Details");
+car.displayDetails();
+
+
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    displayPersonDetails() {
+        console.log("Name:", this.name);
+        console.log("Age:", this.age);
+    }
+}
+
+class Employee extends Person {
+    constructor(name, age, employeeId, salary) {
+        super(name, age);
+        this.employeeId = employeeId;
+        this.salary = salary;
+    }
+
+    displayEmployeeDetails() {
+        console.log("Name:", this.name);
+        console.log("Age:", this.age);
+        console.log("Employee ID:", this.employeeId);
+        console.log("Salary:", this.salary);
+    }
+}
+
+const employee = new Employee("Rahul", 25, 101, 40000);
+
+console.log("\nPerson Details");
+employee.displayPersonDetails();
+
+console.log("\nEmployee Details");
+employee.displayEmployeeDetails();
+
+
+class Animal {
+    sound() {
+        console.log("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    sound() {
+        console.log("Dog says: Woof Woof");
+    }
+}
+
+class Cat extends Animal {
+    sound() {
+        console.log("Cat says: Meow Meow");
+    }
+}
+
+const dog = new Dog();
+const cat = new Cat();
+
+console.log("\nAnimal Sounds");
+dog.sound();
+cat.sound();
+
+
+class Book {
+    constructor(title, author, price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+
+    displayBookInfo() {
+        console.log("Title:", this.title);
+        console.log("Author:", this.author);
+        console.log("Price:", this.price);
+    }
+}
+
+const book = new Book("The Alchemist", "Paulo Coelho", 500);
+
+console.log("\nBook Information");
+book.displayBookInfo();
+
+
+class Calculator {
+    addition(a, b) {
+        return a + b;
+    }
+
+    subtraction(a, b) {
+        return a - b;
+    }
+
+    multiplication(a, b) {
+        return a * b;
+    }
+
+    division(a, b) {
+        return a / b;
+    }
+}
+
+const calculator = new Calculator();
+
+console.log("\nCalculator");
+console.log("Addition:", calculator.addition(20, 10));
+console.log("Subtraction:", calculator.subtraction(20, 10));
+console.log("Multiplication:", calculator.multiplication(20, 10));
+console.log("Division:", calculator.division(20, 10));
+
+
+    </script>
+    
+</body>
+</html>

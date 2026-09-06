@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    class Student {
+    constructor(name, age, course) {
+        this.name = name;
+        this.age = age;
+        this.course = course;
+    }
+}
+
+const student = new Student("Akash", 22, "MERN Stack");
+
+console.log("Student Details");
+console.log("Name:", student.name);
+console.log("Age:", student.age);
+console.log("Course:", student.course);
+
+
+class Employee {
+    constructor(id, name, salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    displayDetails() {
+        console.log("Employee ID:", this.id);
+        console.log("Employee Name:", this.name);
+        console.log("Employee Salary:", this.salary);
+    }
+}
+
+const employee = new Employee(101, "Rahul", 35000);
+
+console.log("\nEmployee Details");
+employee.displayDetails();
+
+
+class Rectangle {
+    constructor(length, width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    calculateArea() {
+        return this.length * this.width;
+    }
+}
+
+const rectangle = new Rectangle(10, 5);
+
+console.log("\nRectangle Details");
+console.log("Length:", rectangle.length);
+console.log("Width:", rectangle.width);
+console.log("Area:", rectangle.calculateArea());
+
+
+class Circle {
+    constructor(radius) {
+        this.radius = radius;
+    }
+
+    calculateCircumference() {
+        return 2 * Math.PI * this.radius;
+    }
+}
+
+const circle = new Circle(7);
+
+console.log("\nCircle Details");
+console.log("Radius:", circle.radius);
+console.log("Circumference:", circle.calculateCircumference().toFixed(2));
+
+
+class BankAccount {
+    constructor(accountNumber, balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    deposit(amount) {
+        this.balance += amount;
+    }
+
+    withdrawal(amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            console.log("Withdrawal successful");
+        } else {
+            console.log("Insufficient balance");
+        }
+    }
+}
+
+const account = new BankAccount("ACC1001", 5000);
+
+console.log("\nBank Account Details");
+console.log("Account Number:", account.accountNumber);
+console.log("Initial Balance:", account.balance);
+
+account.deposit(2000);
+console.log("After Deposit:", account.balance);
+
+account.withdrawal(1000);
+console.log("After Withdrawal:", account.balance);
+
+</script>
+</body>
+</html>
