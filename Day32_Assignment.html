@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        
+
+
+let numbers = [10, 20, 30, 40, 50];
+
+let [first, second] = numbers;
+
+console.log(first);
+console.log(second);
+
+
+
+
+let colors = ["Red", "Blue", "Green", "Yellow", "Black"];
+
+let [color1, ...remainingColors] = colors;
+
+console.log(color1);
+console.log(remainingColors);
+
+
+
+let person = {
+    name: "Akash",
+    age: 25,
+    city: "Chennai"
+};
+
+let { name, age, city } = person;
+
+console.log(name);
+console.log(age);
+console.log(city);
+
+
+
+
+let student = {
+    name: "Rahul",
+    age: 21,
+    city: "Coimbatore"
+};
+
+let { name: studentName, age: studentAge, city: studentCity } = student;
+
+console.log(studentName);
+console.log(studentAge);
+console.log(studentCity);
+
+
+
+let array1 = [10, 20, 30];
+
+let array2 = [40, 50, 60];
+
+let mergedArray = [...array1, ...array2];
+
+console.log(mergedArray);
+
+
+
+
+let fruits = ["Apple", "Banana", "Orange"];
+
+let newFruits = ["Mango", ...fruits, "Grapes"];
+
+console.log(newFruits);
+
+
+
+
+let user = {
+    name: "Akash",
+    age: 25
+};
+
+let newUser = {
+    ...user,
+    city: "Chennai"
+};
+
+console.log(newUser);
+
+
+
+function sum(...numbers) {
+    let total = 0;
+
+    for (let number of numbers) {
+        total = total + number;
+    }
+
+    return total;
+}
+
+console.log(sum(10, 20, 30));
+console.log(sum(10, 20, 30, 40, 50));
+
+
+
+
+function userDetails(name, ...details) {
+    console.log("Name:", name);
+    console.log("Remaining Details:", details);
+}
+
+userDetails("Akash", 25, "Chennai", "MERN Developer");
+
+
+
+
+let nums = [10, 20, 30, 40, 50, 60];
+
+let [firstNumber, ...remainingNumbers] = nums;
+
+console.log(firstNumber);
+console.log(remainingNumbers);
+    </script>
+</body>
+</html>

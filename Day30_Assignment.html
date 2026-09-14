@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+
+let promise1 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve("Welcome to Js Promise");
+    }, 2000);
+});
+
+promise1.then(function (result) {
+    console.log(result);
+});
+
+
+
+
+let promise2 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        reject("Invalid Data");
+    }, 3000);
+});
+
+promise2
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
+
+function checkNumber(num) {
+    return new Promise(function (resolve, reject) {
+        if (num % 2 !== 0) {
+            resolve("Number is Odd");
+        } else {
+            reject("Number is Even");
+        }
+    });
+}
+
+checkNumber(7)
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
+function checkAge(age) {
+    return new Promise(function (resolve, reject) {
+        if (age >= 18) {
+            resolve("Eligible for Employement");
+        } else {
+            reject("Not eligible for Employement");
+        }
+    });
+}
+
+checkAge(20)
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
+
+function Sum(a, b) {
+    return new Promise(function (resolve, reject) {
+        if (b < 0) {
+            reject("b should not be a negative value");
+        } else {
+            resolve(a + b);
+        }
+    });
+}
+
+Sum(10, 20)
+    .then(function (result) {
+        console.log("Sum =", result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
+
+function orderFood() {
+    return new Promise(function (resolve, reject) {
+        console.log("Order placed");
+
+        setTimeout(function () {
+            resolve("Food is ready");
+        }, 5000);
+    });
+}
+
+orderFood()
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
+
+function checkString(str) {
+    return new Promise(function (resolve, reject) {
+        if (str.length > 0) {
+            resolve("String contains characters");
+        } else {
+            reject("String is empty");
+        }
+    });
+}
+
+checkString("Hello")
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
+
+function findEven(num) {
+    return new Promise(function (resolve, reject) {
+        if (num % 2 === 0) {
+            resolve("Number is Even");
+        } else {
+            reject("Number is Odd");
+        }
+    });
+}
+
+findEven(10)
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
+
+let promiseA = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve("Promise 1 completed");
+    }, 1000);
+});
+
+let promiseB = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve("Promise 2 completed");
+    }, 2000);
+});
+
+let promiseC = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve("Promise 3 completed");
+    }, 3000);
+});
+
+Promise.all([promiseA, promiseB, promiseC])
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+
+
+
+let racePromise1 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve("Promise 1 completed first");
+    }, 3000);
+});
+
+let racePromise2 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        reject("Promise 2 rejected");
+    }, 1000);
+});
+
+let racePromise3 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve("Promise 3 completed");
+    }, 2000);
+});
+
+Promise.race([racePromise1, racePromise2, racePromise3])
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+    </script>
+</body>
+</html>
