@@ -1,0 +1,188 @@
+CREATE DATABASE constraintDB;
+
+USE constraintDB;
+
+
+
+
+CREATE TABLE Customer (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(50),
+    Phone VARCHAR(15)
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE,
+    Amount DECIMAL(10,2),
+    OrderStatus VARCHAR(20) DEFAULT 'Pending',
+    FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+    CHECK (Amount > 0)
+);
+
+INSERT INTO Customer (CustomerID, CustomerName, Phone)
+VALUES
+(1, 'Arun', '9876543210'),
+(2, 'Priya', '9876543211'),
+(3, 'Karthik', '9876543212'),
+(4, 'Divya', '9876543213'),
+(5, 'Vijay', '9876543214');
+
+INSERT INTO Orders (OrderID, CustomerID, OrderDate, Amount)
+VALUES
+(101, 1, '2026-09-01', 500.00),
+(102, 2, '2026-09-02', 750.00),
+(103, 3, '2026-09-03', 1200.00),
+(104, 4, '2026-09-04', 300.00),
+(105, 5, '2026-09-05', 950.00);
+
+SELECT * FROM Customer;
+SELECT * FROM Orders;
+
+CREATE TABLE Doctor (
+    DoctorID INT PRIMARY KEY,
+    DoctorName VARCHAR(50),
+    Specialization VARCHAR(50)
+);
+
+CREATE TABLE Patient (
+    PatientID INT PRIMARY KEY,
+    PatientName VARCHAR(50),
+    Age INT,
+    DoctorID INT,
+    Status VARCHAR(20) DEFAULT 'Active',
+    FOREIGN KEY (DoctorID) REFERENCES Doctor(DoctorID),
+    CHECK (Age > 0)
+);
+
+INSERT INTO Doctor (DoctorID, DoctorName, Specialization)
+VALUES
+(1, 'Dr. Kumar', 'Cardiology'),
+(2, 'Dr. Priya', 'Dermatology'),
+(3, 'Dr. Ravi', 'Neurology'),
+(4, 'Dr. Meena', 'Pediatrics'),
+(5, 'Dr. Arun', 'Orthopedics');
+
+INSERT INTO Patient (PatientID, PatientName, Age, DoctorID)
+VALUES
+(101, 'Raj', 30, 1),
+(102, 'Anitha', 25, 2),
+(103, 'Suresh', 45, 3),
+(104, 'Divya', 12, 4),
+(105, 'Manoj', 35, 5);
+
+SELECT * FROM Doctor;
+SELECT * FROM Patient;
+
+
+
+
+CREATE TABLE BankCustomer (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(50),
+    Phone VARCHAR(15)
+);
+
+CREATE TABLE Account (
+    AccountID INT PRIMARY KEY,
+    CustomerID INT,
+    AccountType VARCHAR(30),
+    Balance DECIMAL(12,2),
+    AccountStatus VARCHAR(20) DEFAULT 'Active',
+    FOREIGN KEY (CustomerID) REFERENCES BankCustomer(CustomerID),
+    CHECK (Balance >= 0)
+);
+
+INSERT INTO BankCustomer (CustomerID, CustomerName, Phone)
+VALUES
+(1, 'Ramesh', '9000000001'),
+(2, 'Suresh', '9000000002'),
+(3, 'Meena', '9000000003'),
+(4, 'Lakshmi', '9000000004'),
+(5, 'Rahul', '9000000005');
+
+INSERT INTO Account (AccountID, CustomerID, AccountType, Balance)
+VALUES
+(1001, 1, 'Savings', 25000.00),
+(1002, 2, 'Current', 50000.00),
+(1003, 3, 'Savings', 15000.00),
+(1004, 4, 'Savings', 30000.00),
+(1005, 5, 'Current', 75000.00);
+
+SELECT * FROM BankCustomer;
+SELECT * FROM Account;
+
+
+
+
+CREATE TABLE Publisher (
+    PublisherID INT PRIMARY KEY,
+    PublisherName VARCHAR(100),
+    City VARCHAR(50)
+);
+
+CREATE TABLE Book (
+    BookID INT PRIMARY KEY,
+    BookName VARCHAR(100),
+    PublisherID INT,
+    Price DECIMAL(10,2),
+    AvailableCopies INT DEFAULT 1,
+    FOREIGN KEY (PublisherID) REFERENCES Publisher(PublisherID),
+    CHECK (Price > 0)
+);
+
+INSERT INTO Publisher (PublisherID, PublisherName, City)
+VALUES
+(1, 'Penguin', 'Chennai'),
+(2, 'Oxford', 'Mumbai'),
+(3, 'Pearson', 'Delhi'),
+(4, 'Wiley', 'Bangalore'),
+(5, 'McGraw Hill', 'Hyderabad');
+
+INSERT INTO Book (BookID, BookName, PublisherID, Price)
+VALUES
+(101, 'Java Programming', 1, 500.00),
+(102, 'Python Basics', 2, 450.00),
+(103, 'SQL Guide', 3, 350.00),
+(104, 'React Guide', 4, 600.00),
+(105, 'Data Structures', 5, 700.00);
+
+SELECT * FROM Publisher;
+SELECT * FROM Book;
+
+
+
+
+CREATE TABLE Teacher (
+    TeacherID INT PRIMARY KEY,
+    TeacherName VARCHAR(50),
+    Experience INT CHECK (Experience >= 0)
+);
+
+CREATE TABLE Subject (
+    SubjectID INT PRIMARY KEY,
+    SubjectName VARCHAR(50),
+    TeacherID INT,
+    SubjectStatus VARCHAR(20) DEFAULT 'Available',
+    FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID)
+);
+
+INSERT INTO Teacher (TeacherID, TeacherName, Experience)
+VALUES
+(1, 'Ramesh', 5),
+(2, 'Kavitha', 3),
+(3, 'Suresh', 8),
+(4, 'Anitha', 4),
+(5, 'Manoj', 10);
+
+INSERT INTO Subject (SubjectID, SubjectName, TeacherID)
+VALUES
+(101, 'Java', 1),
+(102, 'Python', 2),
+(103, 'SQL', 3),
+(104, 'React', 4),
+(105, 'MongoDB', 5);
+
+SELECT * FROM Teacher;
+SELECT * FROM Subject;

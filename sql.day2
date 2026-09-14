@@ -1,0 +1,30 @@
+
+create database myorder;
+
+use myorder;
+
+CREATE TABLE orders (
+    id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    quantity INT,
+    price DECIMAL(10,2)
+);
+
+INSERT INTO orders (id, product_name, quantity, price)
+VALUES
+(1, 'Apple', 5, 200.00),
+(2, 'Laptop', 2, 50000.00),
+(3, 'Apron', 4, 350.00),
+(4, 'Bag', 3, 450.00),
+(5, 'Chair', 1, 700.00);
+
+SELECT * FROM orders
+WHERE quantity > 2;
+
+SELECT * FROM orders
+WHERE price BETWEEN 100 AND 500;
+
+SELECT * FROM orders
+WHERE product_name LIKE 'A%';
+
+drop database myorder

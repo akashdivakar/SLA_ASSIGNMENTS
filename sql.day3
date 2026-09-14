@@ -1,0 +1,117 @@
+CREATE DATABASE companyDB;
+
+USE companyDB;
+
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(50),
+    Email VARCHAR(100) UNIQUE,
+    Age INT,
+    Address VARCHAR(100)
+);
+
+INSERT INTO Student (StudentID, StudentName, Email, Age, Address)
+VALUES
+(1, 'Arun', 'arun@gmail.com', 20, 'Chennai'),
+(2, 'Priya', 'priya@gmail.com', 21, 'Madurai'),
+(3, 'Karthik', 'karthik@gmail.com', 22, 'Salem'),
+(4, 'Divya', 'divya@gmail.com', 20, 'Trichy'),
+(5, 'Vijay', 'vijay@gmail.com', 23, 'Coimbatore');
+
+SELECT * FROM Student;
+
+
+CREATE TABLE Employee (
+    EmployeeID INT PRIMARY KEY,
+    EmployeeName VARCHAR(50),
+    Desg VARCHAR(50),
+    Salary DECIMAL(10,2),
+    Email VARCHAR(100) UNIQUE,
+    Phone VARCHAR(15) UNIQUE
+);
+
+INSERT INTO Employee (EmployeeID, EmployeeName, Desg, Salary, Email, Phone)
+VALUES
+(1, 'Ramesh', 'Manager', 50000.00, 'ramesh@gmail.com', '9000000001'),
+(2, 'Suresh', 'Developer', 45000.00, 'suresh@gmail.com', '9000000002'),
+(3, 'Meena', 'HR', 40000.00, 'meena@gmail.com', '9000000003'),
+(4, 'Anitha', 'Tester', 42000.00, 'anitha@gmail.com', '9000000004'),
+(5, 'Rahul', 'Designer', 38000.00, 'rahul@gmail.com', '9000000005');
+
+SELECT * FROM Employee;
+
+
+CREATE TABLE Product (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    ProductCode VARCHAR(50) UNIQUE,
+    ProdDescription VARCHAR(200),
+    Price DECIMAL(10,2)
+);
+
+INSERT INTO Product (ProductID, ProductName, ProductCode, ProdDescription, Price)
+VALUES
+(1, 'Laptop', 'P001', 'Dell Laptop', 55000.00),
+(2, 'Mobile', 'P002', 'Samsung Mobile', 25000.00),
+(3, 'Keyboard', 'P003', 'Wireless Keyboard', 1500.00),
+(4, 'Mouse', 'P004', 'Wireless Mouse', 800.00),
+(5, 'Monitor', 'P005', 'LG Monitor', 12000.00);
+
+SELECT * FROM Product;
+
+INSERT INTO Product (ProductID, ProductName, ProductCode, ProdDescription, Price)
+VALUES
+(6, 'Tablet', 'P001', 'Android Tablet', 18000.00);
+
+
+CREATE TABLE Course (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(100),
+    CourseCode VARCHAR(50) UNIQUE,
+    Duration VARCHAR(50),
+    CourseFee DECIMAL(10,2)
+);
+
+INSERT INTO Course (CourseID, CourseName, CourseCode, Duration, CourseFee)
+VALUES
+(1, 'Java Programming', 'C001', '3 Months', 15000.00),
+(2, 'Python Programming', 'C002', '3 Months', 14000.00),
+(3, 'MERN Stack', 'C003', '6 Months', 30000.00),
+(4, 'Web Development', 'C004', '4 Months', 20000.00),
+(5, 'Data Science', 'C005', '6 Months', 35000.00);
+
+SELECT * FROM Course;
+
+INSERT INTO Course (CourseID, CourseName, CourseCode, Duration, CourseFee)
+VALUES
+(6, 'Java Full Stack', 'C001', '6 Months', 28000.00);
+
+INSERT INTO Course (CourseID, CourseName, CourseCode, Duration, CourseFee)
+VALUES
+(7, 'Advanced Java', 'C001', '4 Months', 22000.00);
+
+
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    Username VARCHAR(50) UNIQUE,
+    Email VARCHAR(100) UNIQUE,
+    Password VARCHAR(100)
+);
+
+INSERT INTO Users (UserID, Username, Email, Password)
+VALUES
+(1, 'arun123', 'arun@gmail.com', 'arun@123'),
+(2, 'priya123', 'priya@gmail.com', 'priya@123'),
+(3, 'karthik123', 'karthik@gmail.com', 'karthik@123'),
+(4, 'divya123', 'divya@gmail.com', 'divya@123'),
+(5, 'vijay123', 'vijay@gmail.com', 'vijay@123');
+
+SELECT * FROM Users;
+
+INSERT INTO Users (UserID, Username, Email, Password)
+VALUES
+(6, 'arun123', 'newarun@gmail.com', 'new@123');
+
+INSERT INTO Users (UserID, Username, Email, Password)
+VALUES
+(7, 'newuser123', 'arun@gmail.com', 'new@456');
