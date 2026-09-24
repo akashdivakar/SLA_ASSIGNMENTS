@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Feedback Form</title>
+</head>
+<body>
+
+  <h2>Customer Feedback Form</h2>
+
+  <form id="feedbackForm">
+    <!-- 1. Full Name -->
+    <p>
+      <label>Full Name:</label><br>
+      <input type="text" id="fullName" required>
+    </p>
+
+    <!-- 2. Email Address -->
+    <p>
+      <label>Email Address:</label><br>
+      <input type="email" id="email" required>
+    </p>
+
+    <!-- 3. Reason for Visit / Purchase -->
+    <p>
+      <label>Reason for Visit / Purchase:</label><br>
+      <input type="radio" name="reason" value="Product Purchase"> Product Purchase<br>
+      <input type="radio" name="reason" value="Customer Support"> Customer Support<br>
+      <input type="radio" name="reason" value="Browsing / Research"> Browsing / Research<br>
+      <input type="radio" name="reason" value="Other"> Other
+    </p>
+
+    <!-- 4. Overall Satisfaction -->
+    <p>
+      <label>Overall Satisfaction:</label><br>
+      <input type="radio" name="satisfaction" value="1 - Very Dissatisfied"> 1 - Very Dissatisfied<br>
+      <input type="radio" name="satisfaction" value="2 - Dissatisfied"> 2 - Dissatisfied<br>
+      <input type="radio" name="satisfaction" value="3 - Neutral"> 3 - Neutral<br>
+      <input type="radio" name="satisfaction" value="4 - Satisfied"> 4 - Satisfied<br>
+      <input type="radio" name="satisfaction" value="5 - Very Satisfied"> 5 - Very Satisfied
+    </p>
+
+    <!-- 5. Ease of Use / Navigation -->
+    <p>
+      <label>Ease of Use / Navigation:</label><br>
+      <input type="radio" name="easeOfUse" value="Very Easy"> Very Easy<br>
+      <input type="radio" name="easeOfUse" value="Easy"> Easy<br>
+      <input type="radio" name="easeOfUse" value="Neutral"> Neutral<br>
+      <input type="radio" name="easeOfUse" value="Difficult"> Difficult<br>
+      <input type="radio" name="easeOfUse" value="Very Difficult"> Very Difficult
+    </p>
+
+    <!-- 6. Product / Service Quality -->
+    <p>
+      <label>Product / Service Quality:</label><br>
+      <input type="radio" name="quality" value="Excellent"> Excellent<br>
+      <input type="radio" name="quality" value="Good"> Good<br>
+      <input type="radio" name="quality" value="Average"> Average<br>
+      <input type="radio" name="quality" value="Poor"> Poor<br>
+      <input type="radio" name="quality" value="Very Poor"> Very Poor
+    </p>
+
+    <!-- 7. Staff / Customer Support Helpfulness -->
+    <p>
+      <label>Staff / Customer Support Helpfulness:</label><br>
+      <input type="radio" name="support" value="N/A - No interaction"> N/A - No interaction<br>
+      <input type="radio" name="support" value="Extremely Helpful"> Extremely Helpful<br>
+      <input type="radio" name="support" value="Somewhat Helpful"> Somewhat Helpful<br>
+      <input type="radio" name="support" value="Unhelpful"> Unhelpful
+    </p>
+
+    <!-- 8. Recommend Score -->
+    <p>
+      <label>How likely are you to recommend us to a friend? Score (0 to 10):</label><br>
+      <input type="number" id="recommendScore" min="0" max="10">
+    </p>
+
+    <!-- 9. What can we improve? -->
+    <p>
+      <label>What can we improve?</label><br>
+      <input type="checkbox" name="improve" value="Product Selection"> Product Selection<br>
+      <input type="checkbox" name="improve" value="Pricing"> Pricing<br>
+      <input type="checkbox" name="improve" value="Website / App"> Website / App<br>
+      <input type="checkbox" name="improve" value="Delivery / Service Speed"> Delivery / Service Speed<br>
+      <input type="checkbox" name="improve" value="Customer Support"> Customer Support
+    </p>
+
+    <!-- 10. Additional Comments -->
+    <p>
+      <label>Additional Comments:</label><br>
+      <textarea id="comments" rows="4" cols="40"></textarea>
+    </p>
+
+    <p>
+      <button type="submit">Submit Feedback</button>
+      <button type="button" onclick="clearDraft()">Clear Draft</button>
+    </p>
+  </form>
+
+  <hr>
+
+  <!-- Display Saved Data from Local Storage -->
+  <h3>Last Submitted Feedback (from Local Storage)</h3>
+  <div id="savedFeedback">No submission yet.</div>
+
+  <script>
+    // 1. Save draft to Session Storage whenever the user types or selects anything
+    function saveDraft() {
+      let improveList = [];
+      let checkBoxes = document.querySelectorAll('input[name="improve"]:checked');
+      checkBoxes.forEach(function(item) {
+        improveList.push(item.value);
+      });
+
+      let draft = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        reason: document.querySelector('input[name="reason"]:checked')?.value || '',
+        satisfaction: document.querySelector('input[name="satisfaction"]:checked')?.value || '',
+        easeOfUse: document.querySelector('input[name="easeOfUse"]:checked')?.value || '',
+        quality: document.querySelector('input[name="quality"]:checked')?.value || '',
+        support: document.querySelector('input[name="support"]:checked')?.value || '',
+        recommendScore: document.getElementById('recommendScore').value,
+        improvements: improveList,
+        comments: document.getElementById('comments').value
+      };
+
+      sessionStorage.setItem('feedbackDraft', JSON.stringify(draft));
+    }
+
+    // 2. Load draft from Session Storage on page load/refresh
+    function loadDraft() {
+      let savedDraft = sessionStorage.getItem('feedbackDraft');
+      if (savedDraft) {
+        let draft = JSON.parse(savedDraft);
+        document.getElementById('fullName').value = draft.fullName || '';
+        document.getElementById('email').value = draft.email || '';
+        document.getElementById('recommendScore').value = draft.recommendScore || '';
+        document.getElementById('comments').value = draft.comments || '';
+
+        // Restore radio selections
+        ['reason', 'satisfaction', 'easeOfUse', 'quality', 'support'].forEach(function(field) {
+          if (draft[field]) {
+            let radio = document.querySelector(`input[name="${field}"][value="${draft[field]}"]`);
+            if (radio) radio.checked = true;
+          }
+        });
+
+        // Restore checkboxes
+        if (draft.improvements) {
+          draft.improvements.forEach(function(val) {
+            let cb = document.querySelector(`input[name="improve"][value="${val}"]`);
+            if (cb) cb.checked = true;
+          });
+        }
+      }
+    }
+
+    // 3. Clear draft from Session Storage
+    function clearDraft() {
+      sessionStorage.removeItem('feedbackDraft');
+      document.getElementById('feedbackForm').reset();
+      alert('Draft cleared!');
+    }
+
+    // 4. Save submission permanently to Local Storage on Submit
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      let improveList = [];
+      let checkBoxes = document.querySelectorAll('input[name="improve"]:checked');
+      checkBoxes.forEach(function(item) {
+        improveList.push(item.value);
+      });
+
+      let feedbackData = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        reason: document.querySelector('input[name="reason"]:checked')?.value || 'N/A',
+        satisfaction: document.querySelector('input[name="satisfaction"]:checked')?.value || 'N/A',
+        easeOfUse: document.querySelector('input[name="easeOfUse"]:checked')?.value || 'N/A',
+        quality: document.querySelector('input[name="quality"]:checked')?.value || 'N/A',
+        support: document.querySelector('input[name="support"]:checked')?.value || 'N/A',
+        recommendScore: document.getElementById('recommendScore').value || 'N/A',
+        improvements: improveList.join(', ') || 'None',
+        comments: document.getElementById('comments').value || 'None'
+      };
+
+      // Save to Local Storage
+      localStorage.setItem('finalFeedback', JSON.stringify(feedbackData));
+
+      // Remove draft from Session Storage
+      sessionStorage.removeItem('feedbackDraft');
+
+      alert('Feedback submitted successfully and saved to Local Storage!');
+      document.getElementById('feedbackForm').reset();
+      displayLocalFeedback();
+    });
+
+    // 5. Display submitted feedback from Local Storage
+    function displayLocalFeedback() {
+      let data = localStorage.getItem('finalFeedback');
+      if (data) {
+        let feedback = JSON.parse(data);
+        document.getElementById('savedFeedback').innerHTML = `
+          <p><strong>Name:</strong> ${feedback.fullName}</p>
+          <p><strong>Email:</strong> ${feedback.email}</p>
+          <p><strong>Reason:</strong> ${feedback.reason}</p>
+          <p><strong>Satisfaction:</strong> ${feedback.satisfaction}</p>
+          <p><strong>Ease of Use:</strong> ${feedback.easeOfUse}</p>
+          <p><strong>Quality:</strong> ${feedback.quality}</p>
+          <p><strong>Support:</strong> ${feedback.support}</p>
+          <p><strong>Score:</strong> ${feedback.recommendScore} / 10</p>
+          <p><strong>Improvements:</strong> ${feedback.improvements}</p>
+          <p><strong>Comments:</strong> ${feedback.comments}</p>
+        `;
+      }
+    }
+
+    // Auto-save draft on every change
+    document.getElementById('feedbackForm').addEventListener('input', saveDraft);
+
+    // Run on page load
+    loadDraft();
+    displayLocalFeedback();
+  </script>
+
+</body>
+</html>
