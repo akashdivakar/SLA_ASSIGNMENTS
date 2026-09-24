@@ -1,0 +1,127 @@
+DELIMITER //
+
+-- 1: Create a stored procedure to add a new customer
+CREATE PROCEDURE AddCustomer (
+    IN p_FirstName VARCHAR(50),
+    IN p_LastName VARCHAR(50),
+    IN p_Email VARCHAR(100),
+    IN p_PhoneNumber VARCHAR(20),
+    IN p_Address VARCHAR(255),
+    IN p_City VARCHAR(100),
+    IN p_RegistrationDate DATE
+)
+BEGIN
+    INSERT INTO Customers (FirstName, LastName, Email, PhoneNumber, Address, City, RegistrationDate)
+    VALUES (p_FirstName, p_LastName, p_Email, p_PhoneNumber, p_Address, p_City, p_RegistrationDate);
+END //
+
+
+-- 2: Create a stored procedure to retrieve customer details by CustomerID
+CREATE PROCEDURE GetCustomerByID (
+    IN p_CustomerID INT
+)
+BEGIN
+    SELECT *
+    FROM Customers
+    WHERE CustomerID = p_CustomerID;
+END //
+
+
+-- 3: Create a stored procedure to update a customer's email and phone number
+CREATE PROCEDURE UpdateCustomerContact (
+    IN p_CustomerID INT,
+    IN p_Email VARCHAR(100),
+    IN p_PhoneNumber VARCHAR(20)
+)
+BEGIN
+    UPDATE Customers
+    SET Email = p_Email,
+        PhoneNumber = p_PhoneNumber
+    WHERE CustomerID = p_CustomerID;
+END //
+
+
+-- 4: Create a stored procedure to get all customers from a specific city
+CREATE PROCEDURE GetCustomersByCity (
+    IN p_City VARCHAR(100)
+)
+BEGIN
+    SELECT *
+    FROM Customers
+    WHERE City = p_City;
+END //
+
+
+-- 5: Create a stored procedure to delete a customer by CustomerID
+CREATE PROCEDURE DeleteCustomerByID (
+    IN p_CustomerID INT
+)
+BEGIN
+    DELETE FROM Customers
+    WHERE CustomerID = p_CustomerID;
+END //
+
+
+-- 6: Create a stored procedure to list customers registered within a given date range
+CREATE PROCEDURE GetCustomersByDateRange (
+    IN p_StartDate DATE,
+    IN p_EndDate DATE
+)
+BEGIN
+    SELECT *
+    FROM Customers
+    WHERE RegistrationDate BETWEEN p_StartDate AND p_EndDate;
+END //
+
+
+-- 7: Create a stored procedure to search for customers by partial FirstName or LastName
+CREATE PROCEDURE SearchCustomersByName (
+    IN p_SearchTerm VARCHAR(50)
+)
+BEGIN
+    SELECT *
+    FROM Customers
+    WHERE FirstName LIKE CONCAT('%', p_SearchTerm, '%')
+       OR LastName LIKE CONCAT('%', p_SearchTerm, '%');
+END //
+
+
+-- 8: Create a stored procedure to update a customer's entire address
+CREATE PROCEDURE UpdateCustomerAddress (
+    IN p_CustomerID INT,
+    IN p_Address VARCHAR(255),
+    IN p_City VARCHAR(100),
+    IN p_State VARCHAR(50),
+    IN p_PostalCode VARCHAR(20),
+    IN p_Country VARCHAR(50)
+)
+BEGIN
+    UPDATE Customers
+    SET Address = p_Address,
+        City = p_City,
+        State = p_State,
+        PostalCode = p_PostalCode,
+        Country = p_Country
+    WHERE CustomerID = p_CustomerID;
+END //
+
+
+-- 9: Create a stored procedure that returns the total number of customers
+CREATE PROCEDURE GetTotalCustomerCount (
+    OUT p_TotalCount INT
+)
+BEGIN
+    SELECT COUNT(*) INTO p_TotalCount
+    FROM Customers;
+END //
+
+
+-- 10: Create a stored procedure to retrieve customers who have not provided an email address
+CREATE PROCEDURE GetCustomersWithoutEmail ()
+BEGIN
+    SELECT *
+    FROM Customers
+    WHERE Email IS NULL OR TRIM(Email) = '';
+END //
+
+DELIMITER ;

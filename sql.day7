@@ -1,0 +1,121 @@
+SELECT 
+    s.StudentName,
+    c.CourseName,
+    d.DepartmentName,
+    sub.SubjectName,
+    m.Marks
+FROM Students s
+JOIN Courses c ON s.CourseID = c.CourseID
+JOIN Departments d ON s.DepartmentID = d.DepartmentID
+JOIN Marks m ON s.StudentID = m.StudentID
+JOIN Subjects sub ON m.SubjectID = sub.SubjectID;
+
+SELECT 
+    e.EmployeeName,
+    d.DepartmentName,
+    des.DesignationName,
+    s.BasicSalary,
+    s.Bonus,
+    l.City
+FROM Employees e
+JOIN Departments d ON e.DepartmentID = d.DepartmentID
+JOIN Designations des ON e.DesignationID = des.DesignationID
+JOIN Salaries s ON e.EmployeeID = s.EmployeeID
+JOIN Locations l ON d.DepartmentID = l.DepartmentID;
+
+SELECT 
+    c.CustomerName,
+    o.OrderDate,
+    p.ProductName,
+    cat.CategoryName,
+    od.Quantity,
+    p.Price
+FROM Customers c
+JOIN Orders o ON c.CustomerID = o.CustomerID
+JOIN OrderDetails od ON o.OrderID = od.OrderID
+JOIN Products p ON od.ProductID = p.ProductID
+JOIN Categories cat ON p.CategoryID = cat.CategoryID;
+
+SELECT 
+    p.PatientName,
+    doc.DoctorName,
+    dep.DepartmentName,
+    a.AppointmentDate,
+    m.MedicineName,
+    pr.Dosage
+FROM Appointments a
+JOIN Patients p ON a.PatientID = p.PatientID
+JOIN Doctors doc ON a.DoctorID = doc.DoctorID
+JOIN Departments dep ON doc.DepartmentID = dep.DepartmentID
+JOIN Prescriptions pr ON a.AppointmentID = pr.AppointmentID
+JOIN Medicines m ON pr.MedicineID = m.MedicineID;
+
+SELECT 
+    e.EmployeeName,
+    d.DepartmentName,
+    p.ProjectName,
+    ep.AssignedDate,
+    m.ManagerName
+FROM EmployeeProjects ep
+JOIN Employees e ON ep.EmployeeID = e.EmployeeID
+JOIN Departments d ON e.DepartmentID = d.DepartmentID
+JOIN Projects p ON ep.ProjectID = p.ProjectID
+JOIN Managers m ON d.DepartmentID = m.DepartmentID;
+
+SELECT 
+    s.StudentName,
+    m.Marks
+FROM Students s
+JOIN Marks m ON s.StudentID = m.StudentID
+WHERE m.Marks > (
+    SELECT AVG(Marks) 
+    FROM Marks
+);
+
+SELECT 
+    e.EmployeeName,
+    s.BasicSalary
+FROM Employees e
+JOIN Salaries s ON e.EmployeeID = s.EmployeeID
+WHERE s.BasicSalary > (
+    SELECT AVG(BasicSalary) 
+    FROM Salaries
+);
+
+SELECT 
+    p1.ProductName,
+    p1.Price,
+    p1.CategoryID
+FROM Products p1
+WHERE p1.Price > (
+    SELECT AVG(p2.Price)
+    FROM Products p2
+    WHERE p2.CategoryID = p1.CategoryID
+);
+
+SELECT 
+    e1.EmployeeName,
+    e1.Salary,
+    e1.DepartmentID
+FROM Employees e1
+WHERE e1.Salary > (
+    SELECT AVG(e2.Salary)
+    FROM Employees e2
+    WHERE e2.DepartmentID = e1.DepartmentID
+);
+
+SELECT 
+    c.CustomerID,
+    c.CustomerName,
+    COUNT(o.OrderID) AS TotalOrders
+FROM Customers c
+JOIN Orders o ON c.CustomerID = o.CustomerID
+GROUP BY c.CustomerID, c.CustomerName
+HAVING COUNT(o.OrderID) > (
+    SELECT AVG(order_count)
+    FROM (
+        SELECT COUNT(OrderID) AS order_count
+        FROM Orders
+        GROUP BY CustomerID
+    ) AS avg_orders
+);
