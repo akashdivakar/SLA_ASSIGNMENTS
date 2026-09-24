@@ -1,0 +1,80 @@
+
+DELIMITER //
+
+CREATE FUNCTION get_annual_salary(monthly_salary DECIMAL(10, 2))
+RETURNS DECIMAL(10, 2)
+DETERMINISTIC
+BEGIN
+    RETURN monthly_salary * 12;
+END //
+
+DELIMITER ;
+
+-- Query:
+SELECT emp_name, salary AS monthly_salary, get_annual_salary(salary) AS annual_salary
+FROM employees;
+
+
+
+DELIMITER //
+
+CREATE FUNCTION calculate_experience(joining_year INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    RETURN YEAR(CURDATE()) - joining_year;
+END //
+
+DELIMITER ;
+
+-- Query:
+SELECT emp_name, joining_year, calculate_experience(joining_year) AS experience_years
+FROM employees;
+
+
+
+DELIMITER //
+
+CREATE FUNCTION get_grade(mark INT)
+RETURNS VARCHAR(2)
+DETERMINISTIC
+BEGIN
+    DECLARE grade VARCHAR(2);
+    
+    IF mark >= 90 THEN
+        SET grade = 'A';
+    ELSEIF mark >= 75 THEN
+        SET grade = 'B';
+    ELSEIF mark >= 60 THEN
+        SET grade = 'C';
+    ELSEIF mark >= 50 THEN
+        SET grade = 'D';
+    ELSE
+        SET grade = 'F';
+    END IF;
+    
+    RETURN grade;
+END //
+
+DELIMITER ;
+
+-- Query:
+SELECT student_name, mark, get_grade(mark) AS grade
+FROM students;
+
+
+
+DELIMITER //
+
+CREATE FUNCTION calculate_discount(price DECIMAL(10, 2), discount_percentage DECIMAL(5, 2))
+RETURNS DECIMAL(10, 2)
+DETERMINISTIC
+BEGIN
+    RETURN (price * discount_percentage) / 100;
+END //
+
+DELIMITER ;
+
+-- Query (Example with 10% discount):
+SELECT product_name, price, calculate_discount(price, 10) AS discount_amount
+FROM products;
